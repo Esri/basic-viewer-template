@@ -6,6 +6,9 @@ template is a great choice for those of you who are looking to provide a focused
 still like to include some flexibility in terms of interacting with the application and the layers contained within the 
 web map.  
 
+![Screen Shot](https://dl.dropboxusercontent.com/u/24627279/screenshots/bv_traffic.png)
+[View it live] (http://www.arcgis.com/apps/OnePane/basicviewer/index.html?webmap=f0ab658973704bfbb518f3afe8a84553)
+
 #Features
 The author of the application can choose to enable the following functionality.
 
