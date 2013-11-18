@@ -1,0 +1,23 @@
+<div data-dojo-props="class:'${baseClass}'">
+  <div data-dojo-attach-point="containerNode" data-dojo-type="dijit.layout.StackContainer" data-dojo-props="style:{width:'auto',margin:'10px 5px',height:'265px',backgroundColor:'white'}">
+    <div data-dojo-attach-point="profileParentPane" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="style:{width:'auto',margin:'5px',padding:'0px',overflow:'hidden'}">
+      <div data-dojo-attach-point="profilePane" title="${display.elevationProfileTitle}" style="width:auto;height:255px;margin:auto;overflow:hidden"></div>
+    </div>
+    <div data-dojo-attach-point="profileInfo" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="style:{width:'auto',padding:'40px 40px 40px 80px'}">
+      <span style="font-size:larger;font-weight:bold;">${display.elevationProfileTitle}</span>
+      <ol>
+        <li>
+          ${display.selectLine}&nbsp;<a href="${display.selectFeatureHelpUrl}" target="_blank" alt="">${display.showMe}</a>
+          <br/>
+          <span style="color:gray">${display.popupRequirement}</span>
+        </li>
+        <br/>
+        <li>
+          ${display.digitizeDistanceMeasureTool}&nbsp;<a href="${display.measureToolHelpUrl}" target="_blank" alt="">${display.showMe}</a>
+        </li>
+      </ol>
+      <div data-dojo-attach-point="cautionMsgNode" style="color:darkred;margin-left:20px;"></div>
+      <div style="margin-top:15px;font-size:larger;">${display.hoverOver}&nbsp;(<span style="font-style:italic;">${display.touchIPad}</span>)&nbsp;${display.locationOnMap}</div>
+    </div>
+  </div>
+</div>

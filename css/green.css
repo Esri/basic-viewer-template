@@ -1,0 +1,65 @@
+
+/*The image specified for the body is used to apply the gradient background to the entire page*/
+body {
+  background:url(../images/green/body_bg.png) repeat-x #666666;
+}
+#leftPane {
+  background-color:#ecf4e9;
+}
+/*override claro background and other props*/
+#toolbarContainer_bv .dijitToolbar {
+  background:url(../images/green/toolbar_bg.png) repeat-x #4a6f1c;
+}
+/*Measure toggle button*/
+.claro .dijitToolbar .dijitButtonNode:hover {
+  background:url(../images/green/sidebar_header_active_bg.png) repeat-x #b5d19a;
+}
+.claro .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode {
+   background:url(../images/green/sidebar_header_active_bg.png) repeat-x #b5d19a;
+}
+
+/*Attribute Inspector button styling (delete buttons)*/
+.esriAttributeInspector div.atiButtons span.dijit span.dijitReset{
+  background:url(../images/green/toolbar_bg.png) repeat-x #4a6f1c;
+  color:#fff;
+  border: none;
+}
+.esriAttributeInspector div.atiButtons span.dijit span.dijitReset:hover{
+  background:url(../images/green/sidebar_header_active_bg.png) repeat-x #b5d19a;
+  color:#000;
+}
+.dojoxFloatingPaneTitle{
+  background:url(../images/green/toolbar_bg.png) repeat-x #4a6f1c;
+}
+
+.esriPopup .titlePane{
+  background-color:#406919;
+  border-style:none;
+}
+.esriPopup .pointer, .esriPopup .outerPointer {
+    background: url("../images/green/popup_g.png") no-repeat scroll 0 0 transparent;
+}
+
+/*slider background*/
+.esriSimpleSliderVertical .esriSimpleSliderIncrementButton ,.esriSimpleSliderVertical .esriSimpleSliderDecrementButton  {
+  background:url(../images/green/toolbar_bg.png) repeat-x #4a6f1c;
+  border:solid 1px #4a6f1c;
+}
+ /*Identity Manager Dialog*/
+.claro .dijitDialogTitleBar {
+  background:url(../images/green/toolbar_bg.png) repeat-x #545454;
+  color:#fff;
+  border: solid 1px #4a6f1c;
+}
+.claro .dijitDialog {
+    border: 1px solid #808080;
+}
+
+.claro .dijitDialogPaneActionBar .dijitButtonNode{
+  background-image:none;
+  border: solid 1px #4a6f1c;
+  background:url(../images/green/sidebar_header_active_bg.png) repeat-x #CEE1EC;
+}
+.esriBookmarkItem:hover{
+  background-color:#b5d19a;
+}

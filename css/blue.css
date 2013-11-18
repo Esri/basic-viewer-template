@@ -1,0 +1,67 @@
+
+/*The image specified for the body is used to apply the gradient background to the entire page*/
+body {
+  background:url(../images/blue/body_bg.png) repeat-x #97a7b8;
+}
+#leftPane {
+  background-color:#e9eef2;
+}
+/*override claro background and other props*/
+#toolbarContainer_bv .dijitToolbar {
+  background:url(../images/blue/toolbar_bg.png) repeat-x #6788a2;
+}
+/*Measure toggle button*/
+.claro .dijitToolbar .dijitButtonNode:hover {
+  background:url(../images/blue/sidebar_header_active_bg.png) repeat-x #cee1ec;
+}
+.claro .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode {
+   background:url(../images/blue/sidebar_header_active_bg.png) repeat-x #cee1ec;
+}
+.dojoxFloatingPaneTitle{
+  background:url(../images/blue/toolbar_bg.png) repeat-x #6788a2;
+}
+
+.esriPopup .titlePane{
+  background-color:#446485;
+  border-style:none;
+}
+
+.esriPopup .pointer, .esriPopup .outerPointer {
+    background: url("../images/blue/popup_b.png") no-repeat scroll 0 0 transparent;
+}
+
+/*Attribute Inspector button styling (delete buttons)*/
+.esriAttributeInspector div.atiButtons span.dijit span.dijitReset{
+  background:url(../images/blue/toolbar_bg.png) repeat #6788a2;
+  color:#fff;
+  border: none;
+}
+.esriAttributeInspector div.atiButtons span.dijit span.dijitReset:hover{
+  background:url(../images/blue/sidebar_header_active_bg.png) repeat-x #cee1ec;
+  color:#000;
+}
+
+/*slider background*/
+.esriSimpleSliderVertical .esriSimpleSliderIncrementButton ,.esriSimpleSliderVertical .esriSimpleSliderDecrementButton  {
+  background:url(../images/blue/toolbar_bg.png) repeat-x #6788a2;
+  border:solid 1px #6788a2;
+}
+
+ /*Identity Manager Dialog*/
+.claro .dijitDialogTitleBar {
+  background:url(../images/blue/toolbar_bg.png) repeat-x #545454;
+  color:#fff;
+  border: solid 1px #6788a2;
+}
+.claro .dijitDialog {
+    border: 1px solid #808080;
+}
+
+.claro .dijitDialogPaneActionBar .dijitButtonNode{
+  background-image:none;
+  border: solid 1px #6788a2;
+  background:url(../images/blue/sidebar_header_active_bg.png) repeat-x #CEE1EC;
+}
+.esriBookmarkItem:hover{
+  background-color:#CEE1EC;
+}

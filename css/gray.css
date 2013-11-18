@@ -1,0 +1,66 @@
+
+/*The image specified for the body is used to apply the gradient background to the entire page*/
+body {
+  background:url(../images/gray/body_bg.png) repeat-x #666;
+}
+#leftPane {
+  background-color:#EEE;
+}
+/*override claro background and other props*/
+#toolbarContainer_bv .dijitToolbar {
+  background:url(../images/gray/toolbar_bg.png) repeat-x #545454;
+}
+/*Measure toggle button*/
+.claro .dijitToolbar .dijitButtonNode:hover {
+  background:url(../images/gray/sidebar_header_active_bg.png) repeat-x #CEE1EC;
+}
+/*Attribute Inspector button styling (delete buttons)*/
+.esriAttributeInspector div.atiButtons span.dijit span.dijitReset{
+  background:url(../images/gray/toolbar_bg.png) repeat #545454;
+  color:#fff;
+  border: none;
+}
+.esriAttributeInspector div.atiButtons span.dijit span.dijitReset:hover{
+  background:url(../images/gray/sidebar_header_active_bg.png) repeat-x #CEE1EC;
+  color:#000;
+}
+
+.claro .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode {
+  background:url(../images/gray/sidebar_header_active_bg.png) repeat-x #CEE1EC;
+}
+.dojoxFloatingPaneTitle{
+  background:url(../images/gray/toolbar_bg.png) repeat-x #545454;
+}
+
+/*slider background*/
+.esriSimpleSliderVertical .esriSimpleSliderIncrementButton ,.esriSimpleSliderVertical .esriSimpleSliderDecrementButton  {
+  background:url(../images/gray/toolbar_bg.png) repeat-x #545454;
+  border:solid 1px #545454;
+}
+/*Identity Manager Dialog*/
+.claro .dijitDialogTitleBar {
+  background:url(../images/gray/toolbar_bg.png) repeat-x #545454;
+  color:#fff;
+  border: solid 1px #545454;
+}
+.claro .dijitDialog {
+    border: 1px solid #808080;
+}
+
+.claro .dijitDialogPaneActionBar .dijitButtonNode{
+  background-image:none;
+  background:url(../images/gray/sidebar_header_active_bg.png) repeat-x #CEE1EC;
+}
+.esriBookmarkItem:hover{
+  background-color:#CEE1EC;
+}
+/*.esriPopup .pointer.top {
+  background-position: 0 -580px;
+}
+.esriPopup .pointer.topLeft {
+  left: 0px; top: -43px; background-position: 0 -470px; width: 51px; height: 43px;
+}
+
+.esriPopup .pointer.topRight {
+  right: 0px; top: -43px; background-position: 0 -652px; width: 51px; height: 43px;
+}*/

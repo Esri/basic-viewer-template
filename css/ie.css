@@ -1,0 +1,40 @@
+html {
+  height: 100% !important;
+  width: 100% !important;
+  margin:0 !important;
+  padding: 0 !important;
+}
+body{
+  margin:0px;
+  padding:0px;
+}
+.notembed{
+  height: 98% !important;
+  width: 98% !important;
+}
+.notembed body{
+  margin-left:2%;
+  margin-right:2%;
+}
+#bookmarkView{
+  width: 210px; 
+}
+
+.esriPrint{
+  float:left;
+}
+.esriPrint .dijitComboButton .dijitIcon{
+  background-image:url(../images/genericprint.png);
+  background-repeat:no-repeat;
+  float:left;
+  width:16px;
+  margin:4px 0 4px 4px;
+}
+.esriPrint .dijitButtonText {
+  padding-top:4px;
+}
+.esriPrintout {
+   margin-top:4px;
+   float:left;
+}
+
