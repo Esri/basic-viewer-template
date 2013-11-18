@@ -9,18 +9,18 @@ web map.
 #Features
 The author of the application can choose to enable the following functionality.
 
-. **Legend:** Display a legend for the web map.
-. **Details:** Display detailed descriptive information about the web map.
-. **Editor:** If the web map contains editable feature service layers basic map editing is available.
-. **Time Slider:** If the web map contains time aware data, then a time slider is available.
-. **Printing:** Print map of current extent with optional legend and layout.
-. **LayerList:** Toggle the visibility of the web map's operational layers.
-. **BasemapGallery:** Select a new basemap from a list of ArcGIS Online basemaps or provide your own.
-. **Bookmarks:** If the web map contains bookmarks they can be used to brow within the map.
-. **Measure:** Measure area and distances on the web map.
-. **Sharing:** Share the application via email, Twitter or Facebook.
-. **Find Place:** Find an address or location.
-. **Overview Map:** Display the overview map.
+- **Legend:** Display a legend for the web map.
+- **Details:** Display detailed descriptive information about the web map.
+- **Editor:** If the web map contains editable feature service layers basic map editing is available.
+- **Time Slider:** If the web map contains time aware data, then a time slider is available.
+- **Printing:** Print map of current extent with optional legend and layout.
+- **LayerList:** Toggle the visibility of the web map's operational layers.
+- **BasemapGallery:** Select a new basemap from a list of ArcGIS Online basemaps or provide your own.
+- **Bookmarks:** If the web map contains bookmarks they can be used to brow within the map.
+- **Measure:** Measure area and distances on the web map.
+- **Sharing:** Share the application via email, Twitter or Facebook.
+- **Find Place:** Find an address or location.
+- **Overview Map:** Display the overview map.
 
 Additionally, the author of the application can embed a logo and choose between five color schemes. This template is part
 of the ArcGIS.com template gallery. These templates can be accessed from the ArcGIS.com map viewer Share window or from 
@@ -37,13 +37,13 @@ application or you can download the template ZIP file to install on your web ser
 
 #Requirements
 
-. Notepad or HTML editor
-. Some background with HTML, CSS and JavaScript
-. Experience with the ArcGIS API for JavaScript is helpful. 
+- Notepad or HTML editor
+- Some background with HTML, CSS and JavaScript
+- Experience with the ArcGIS API for JavaScript is helpful. 
 
 #Resources
 
-. [ArcGIS API for JavaScript Resource Center](http://help.arcgis.com/en/webapi/javascript/arcgis/index.html)
+- [ArcGIS API for JavaScript Resource Center](http://help.arcgis.com/en/webapi/javascript/arcgis/index.html)
 
 #Issues
 Found a bug or want to request a new feature? Please let us know by submitting an issue. 
