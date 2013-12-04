@@ -1,34 +1,36 @@
 basic-viewer-template
 =====================
 
-The Basic Viewer is a configurable template that displays a web map from ArcGIS.com along with several optional tools.  This
-template is a great choice for those of you who are looking to provide a focused experience to your end users but would 
-still like to include some flexibility in terms of interacting with the application and the layers contained within the 
-web map.  
+*Basic Viewer* is a configurable application template that enables you to display an ArcGIS web map using a variety of tools. The template can be configured using the following options:
 
-![Screen Shot](https://dl.dropboxusercontent.com/u/24627279/screenshots/bv_traffic.png)
+![Screen Shot](https://dl.dropboxusercontent.com/u/24627279/screenshots/BasicViewer.jpg)
 [View it live] (http://www.arcgis.com/apps/OnePane/basicviewer/index.html?webmap=f0ab658973704bfbb518f3afe8a84553)
 
 #Features
 The author of the application can choose to enable the following functionality.
 
-- **Legend:** Display a legend for the web map.
-- **Details:** Display detailed descriptive information about the web map.
-- **Editor:** If the web map contains editable feature service layers basic map editing is available.
-- **Time Slider:** If the web map contains time aware data, then a time slider is available.
-- **Printing:** Print map of current extent with optional legend and layout.
-- **LayerList:** Toggle the visibility of the web map's operational layers.
-- **BasemapGallery:** Select a new basemap from a list of ArcGIS Online basemaps or provide your own.
-- **Bookmarks:** If the web map contains bookmarks they can be used to brow within the map.
-- **Measure:** Measure area and distances on the web map.
-- **Sharing:** Share the application via email, Twitter or Facebook.
-- **Find Place:** Find an address or location.
-- **Overview Map:** Display the overview map.
+- **Map:** Choose the web map used in your application.
+- **Color Scheme:** Choose between five color schemes for the application (Blue, Gray, Green, Orange, Purple).
+- **Show Title:** Choose whether to include an application title. 
+- **Title Text:** The application title. The default title is the web map name.
+- **Logo:** Choose a custom logo for your application.
+- **Overview Map:** Display a retractable overview map to add context for panning and zooming.
+- **Legend:** Display a legend for map layers. *
+- **Details:** Display the web map item description. *
+- **Editor:** Allows users to interactively create, modify, or delete features in editable layers. *
+- **Time Slider:** Enables the display of the time slider. *
+- **Print:** Enables printing the map at the current extent. It can be configured to include a legend and supports different layout options.
+- **Layer List:** Enables toggling the visibility of operational layers within the web map. *
+- **Basemaps:** Enables the display of the basemap gallery. 
+- **Bookmarks:** Enables the use of web map bookmarks for navigation. *
+- **Measure:** Enables measure tool for interactive area, length, and point measurement.
+- **Share:** Allows users to share the application with others via email, Twitter, or Facebook.
+- **Search:** Displays the Search box to enable navigation to addresses and places. 
+- **Search** for locations within current extent: Enable toggling of search within the current map extent only.
 
-Additionally, the author of the application can embed a logo and choose between five color schemes. This template is part
-of the ArcGIS.com template gallery. These templates can be accessed from the ArcGIS.com map viewer Share window or from 
-the Web Application Templates group. When accessed from the map viewer the templates can be published as a hosted 
-application or you can download the template ZIP file to install on your web server.
+*These options will appear in the application when the web map has properties or layers that support them.
+
+Basic Viewer can be accessed via the ArcGIS template gallery or item details. The application source code can be downloaded for further customization and published from your own web server.
 
 #Instructions
 
