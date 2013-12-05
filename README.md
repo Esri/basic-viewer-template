@@ -1,6 +1,5 @@
 basic-viewer-template
 =====================
-
 *Basic Viewer* is a configurable application template that enables you to display an ArcGIS web map using a variety of tools. The template can be configured using the following options:
 
 ![Screen Shot](https://dl.dropboxusercontent.com/u/24627279/screenshots/BasicViewer.jpg)
