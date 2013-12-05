@@ -30,7 +30,7 @@ The author of the application can choose to enable the following functionality.
 
 *These options will appear in the application when the web map has properties or layers that support them.
 
-Basic Viewer can be accessed via the ArcGIS template gallery or item details. The application source code can be downloaded for further customization and published from your own web server.
+
 
 #Instructions
 
