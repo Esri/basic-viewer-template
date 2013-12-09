@@ -61,7 +61,7 @@
       weekPattern: "MMMM d, rrrr",
       hourTimePattern: "h a",
       // e.g. for German: "H:mm:ss:SSS"
-      millisecondTimePattern:"Ř_h:m:ss.SSS a_ů",
+      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "h:mm a",
       // e.g. for German: "H:mm"
       monthPattern: "MMMM d, r",
@@ -94,12 +94,12 @@
     },
     search: {
       title: "Najít adresu nebo místo",
-      popupTitle: "Umístění",
-      currentLocation: "Aktuální umístění",
+      popupTitle: "Lokalita",
+      currentLocation: "Aktuální lokalita",
       notWhatYouWanted: "Nenašli jste, co jste hledali?" ,
-      selectAnother: "Vybrat jiné umístění",
+      selectAnother: "Vybrat jinou lokalitu",
       errors:{
-       missingLocation: "Umístění nenalezeno."
+       missingLocation: "Lokalita nenalezena"
       }
     }
   },

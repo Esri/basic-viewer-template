@@ -61,9 +61,9 @@
       weekPattern: "dd-mm-yyyy",
       hourTimePattern: "hh",
       // e.g. for German: "hh:mm:ss"
-      millisecondTimePattern:"ł_h:m:ss.SSS a_ą",
+      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "hh:mm",
-      // e.g. for German: "h:mm"
+      // e.g. for German: "hh:mm"
       monthPattern: "dd-mm-yyyy",
       secondTimePattern: "hh:mm:ss",
       title: "Suwak wyświetlania czasu",
@@ -96,7 +96,7 @@
       title: "Znajdź adres lub miejsce",
       popupTitle: "Lokalizacja",
       currentLocation: "Bieżąca lokalizacja",
-      notWhatYouWanted: "Nie to, czego oczekiwano?" ,
+      notWhatYouWanted: "Oczekiwano innej lokalizacji?" ,
       selectAnother: "Wybierz inną lokalizację",
       errors:{
        missingLocation: "Nie odnaleziono lokalizacji"

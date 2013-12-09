@@ -7,25 +7,40 @@ dojo.require("apl.ElevationsChart.Pane");
 
 var map;
 var clickHandler, clickListener;
-var editLayers = [], editorWidget;
+var editLayers = [],
+    editorWidget;
 var webmapExtent;
 var configOptions;
+var allResults = null;
 
 var measure;
 
 function initMap(options) {
-       /*Patch to fix issue with floating panes used to display the measure and time panel. They
+/*Patch to fix issue with floating panes used to display the measure and time panel. They
        moved slightly each time the window was toggled due to this bug
        http://bugs.dojotoolkit.org/ticket/5849
        */
-       dojox.layout.FloatingPane.prototype.show = function(callback){
-        var anim = dojo.fadeIn({node:this.domNode, duration:this.duration,
-            beforeBegin: dojo.hitch(this,function(){
-            this.domNode.style.display = ""; this.domNode.style.visibility = "visible"; if (this.dockTo && this.dockable) { this.dockTo._positionDock(null); } if (typeof callback == "function") { callback(); } this._isDocked = false; if (this._dockNode) {
-                this._dockNode.destroy(); this._dockNode = null;
-            }
+    dojox.layout.FloatingPane.prototype.show = function (callback) {
+        var anim = dojo.fadeIn({
+            node: this.domNode,
+            duration: this.duration,
+            beforeBegin: dojo.hitch(this, function () {
+                this.domNode.style.display = "";
+                this.domNode.style.visibility = "visible";
+                if (this.dockTo && this.dockable) {
+                    this.dockTo._positionDock(null);
+                }
+                if (typeof callback == "function") {
+                    callback();
+                }
+                this._isDocked = false;
+                if (this._dockNode) {
+                    this._dockNode.destroy();
+                    this._dockNode = null;
+                }
             })
-        }).play(); this.resize(dojo.coords(this.domNode));
+        }).play();
+        this.resize(dojo.coords(this.domNode));
     }
 
 
@@ -125,7 +140,7 @@ function createApp() {
     }
 
 
-    if (configOptions.gcsextent ) {
+    if (configOptions.gcsextent) {
         //make sure the extent is valid minx,miny,maxx,maxy
         var extent = configOptions.gcsextent;
         if (extent) {
@@ -237,22 +252,22 @@ function createMap(webmapitem) {
 
         var initialExtent = response.map.extent;
         if (configOptions.extent) {
-           var extent = new esri.geometry.Extent(dojo.fromJson(configOptions.extent));
-           if(isValidExtent(extent)){
-             initialExtent = extent;
-           }else{
-            //maybe its xmin,xmax etc so lets see if the extent works in the current spatial ref
-             var coords = configOptions.extent.split(",");
-    
-             if(coords.length > 3){
-                extent = new esri.geometry.Extent(parseInt(coords[0]), parseInt(coords[1]), parseInt(coords[2]), parseInt(coords[3]), map.spatialReference);
-                 console.log(extent);
-                 if(isValidExtent(extent)){
-                    //reset to webmap initial extent
-                    initialExtent = extent;
-                 }
-             }
-           }
+            var extent = new esri.geometry.Extent(dojo.fromJson(configOptions.extent));
+            if (isValidExtent(extent)) {
+                initialExtent = extent;
+            } else {
+                //maybe its xmin,xmax etc so lets see if the extent works in the current spatial ref
+                var coords = configOptions.extent.split(",");
+
+                if (coords.length > 3) {
+                    extent = new esri.geometry.Extent(parseInt(coords[0]), parseInt(coords[1]), parseInt(coords[2]), parseInt(coords[3]), map.spatialReference);
+                    console.log(extent);
+                    if (isValidExtent(extent)) {
+                        //reset to webmap initial extent
+                        initialExtent = extent;
+                    }
+                }
+            }
 
         }
         map.setExtent(initialExtent);
@@ -262,15 +277,17 @@ function createMap(webmapitem) {
         alert(i18n.viewer.errors.createMap + " : " + dojo.toJson(error.message));
     });
 }
-function isValidExtent(extent){
+
+function isValidExtent(extent) {
     var valid = false;
-    if((extent.xmax === undefined) || (extent.xmin === undefined) || (extent.ymax === undefined) || (extent.ymin === undefined)){
+    if ((extent.xmax === undefined) || (extent.xmin === undefined) || (extent.ymax === undefined) || (extent.ymin === undefined)) {
         return false;
-    }else{
+    } else {
         return true;
     }
 
 }
+
 function initUI(response) {
     dojo.connect(dijit.byId('map'), 'resize', resizeMap);
     adjustPopupSize();
@@ -463,8 +480,7 @@ function initUI(response) {
         }
         dijit.byId('mainWindow').resize();
 
-       // resizeMap(); //comment out due to op layer moving bug when using a non web mercator basemap
-
+        // resizeMap(); //comment out due to op layer moving bug when using a non web mercator basemap
     }
 
 
@@ -481,10 +497,10 @@ function initUI(response) {
                 var fullExtent = getFullTimeExtent(timeLayers);
                 var timeProperties = {
                     'startTime': fullExtent.startTime,
-                        'endTime': fullExtent.endTime,
-                        'thumbCount': 2,
-                        'thumbMovingRate': 2000,
-                        'timeStopInterval': findDefaultTimeInterval(fullExtent)
+                    'endTime': fullExtent.endTime,
+                    'thumbCount': 2,
+                    'thumbMovingRate': 2000,
+                    'timeStopInterval': findDefaultTimeInterval(fullExtent)
                 }
                 addTimeSlider(timeProperties);
             } else {
@@ -505,9 +521,10 @@ function initUI(response) {
 
     resizeMap(); //resize the map in case any of the border elements have changed
 
-
 }
 //
+
+
 function displayLeftPanel() {
     //display the left panel if any of these options are enabled. 
     var display = false;
@@ -533,6 +550,8 @@ function resizeMap() {
 
 //select panels in the stack container. The stack container is used to organize content 
 //in the left panel (editor, legend, details)
+
+
 function navigateStack(label) {
     //display the left panel if its hidden
     showLeftPanel();
@@ -550,21 +569,23 @@ function navigateStack(label) {
     //toggle the other buttons
     var buttonLabel = '';
     switch (label) {
-        case 'editPanel':
-            buttonLabel = 'editButton';
-            break;
-        case 'legendPanel':
-            buttonLabel = 'legendButton';
-            break;
-        case 'detailPanel':
-            buttonLabel = 'detailButton';
-            break;
+    case 'editPanel':
+        buttonLabel = 'editButton';
+        break;
+    case 'legendPanel':
+        buttonLabel = 'legendButton';
+        break;
+    case 'detailPanel':
+        buttonLabel = 'detailButton';
+        break;
     }
     toggleToolbarButtons(buttonLabel);
 }
 
 //Utility functions that handles showing and hiding the left panel. Hide occurs when 
 //the x (close) button is clicked. 
+
+
 function showLeftPanel() {
     //display the left panel if hidden
     var leftPaneWidth = dojo.style(dojo.byId("leftPane"), "width");
@@ -610,6 +631,8 @@ function toggleToolbarButtons(label) {
 }
 
 //Create links for sharing the app via social networking 
+
+
 function updateLinkUrls() {
     //get the current map extent
     var extent = "";
@@ -649,14 +672,13 @@ function createLink(mapTitle, url) {
 
 function getBasemapGroup() {
     //get the basemap group if a custom one is defined or if a hosted or portal app with a custom group.
-
     var basemapGroup = null;
     if (configOptions.basemapgroup.title && configOptions.basemapgroup.owner) {
         basemapGroup = {
             "owner": configOptions.basemapgroup.owner,
             "title": configOptions.basemapgroup.title
         }
-    }else if(configOptions.basemapgroup.id){
+    } else if (configOptions.basemapgroup.id) {
         basemapGroup = {
             "id": configOptions.basemapgroup.id
         }
@@ -667,7 +689,6 @@ function getBasemapGroup() {
 
 function addBasemapGalleryMenu() {
     //This option is used for embedded maps so the gallery fits well with apps of smaller sizes. 
-
     var ht = map.height / 2;
     var cp = new dijit.layout.ContentPane({
         id: 'basemapGallery',
@@ -693,10 +714,10 @@ function addBasemapGalleryMenu() {
         dojo.forEach(basemapGallery.basemaps, function (basemap) {
             //Add a menu item for each basemap, when the menu items are selected
             menu.addChild(new utilities.custommenu({
-                label: basemap.title, 
+                label: basemap.title,
                 iconClass: "menuIcon",
                 iconSrc: basemap.thumbnailUrl,
-                onClick: function(){
+                onClick: function () {
                     basemapGallery.select(basemap.id);
                 }
             }));
@@ -728,6 +749,8 @@ function addBasemapGalleryMenu() {
 
 
 //Add the basemap gallery widget to the application. 
+
+
 function addBasemapGallery() {
 
     var cp = new dijit.layout.ContentPane({
@@ -769,6 +792,8 @@ function addBasemapGallery() {
 }
 
 //add any bookmarks to the application
+
+
 function addBookmarks(info) {
     //does the web map have any bookmarks
     if (info.itemInfo.itemData.bookmarks) {
@@ -802,6 +827,8 @@ function addBookmarks(info) {
 }
 //Create a menu with a list of operational layers. Each menu item contains a check box
 //that allows users to toggle layer visibility. 
+
+
 function addLayerList(layers) {
     var layerList = buildLayerVisibleList(layers);
     if (layerList.length > 0) {
@@ -846,6 +873,8 @@ function addLayerList(layers) {
 //build a list of layers for the toggle layer list - this list
 //is slightly different than the legend because we don't want to list lines,points,areas etc for each
 //feature collection type. 
+
+
 function buildLayerVisibleList(layers) {
     var layerInfos = [];
     dojo.forEach(layers, function (mapLayer, index) {
@@ -856,8 +885,8 @@ function buildLayerVisibleList(layers) {
                 if (mapLayer.featureCollection.layers) {
                     layerInfos.push({
                         "layer": mapLayer,
-                            "visible": mapLayer.visibility,
-                            "title": mapLayer.title
+                        "visible": mapLayer.visibility,
+                        "title": mapLayer.title
                     });
                 }
             }
@@ -876,74 +905,82 @@ function addPrint(layers) {
 
     //generate a list of legend layers if the configuration property is set to true 
     var legendLayers = [];
-    if (configOptions.displayprintlegend){
-        legendLayers = dojo.map(layers, function(layer){
-            return {"layerId": layer.id}
+    if (configOptions.displayprintlegend) {
+        legendLayers = dojo.map(layers, function (layer) {
+            return {
+                "layerId": layer.id
+            }
         });
     }
 
     var layoutOptions = {
         'authorText': configOptions.owner,
         'titleText': configOptions.title,
-        'scalebarUnit': configOptions.units, //(i18n.viewer.main.scaleBarUnits === 'english') ? 'Miles' : 'Kilometers',
+        'scalebarUnit': configOptions.units,
+        //(i18n.viewer.main.scaleBarUnits === 'english') ? 'Miles' : 'Kilometers',
         'legendLayers': legendLayers
     };
 
 
     //default template options
-     var templates = dojo.map(configOptions.printlayouts, function (layout) {
-            layout.layoutOptions = layoutOptions;
-            return layout;
+    var templates = dojo.map(configOptions.printlayouts, function (layout) {
+        layout.layoutOptions = layoutOptions;
+        return layout;
     });
-    if(configOptions.printlayout){ //when true use all print options
+    if (configOptions.printlayout) { //when true use all print options
         //get all the layouts from the service. 
         var printInfo = esri.request({
             url: configOptions.helperServices.printTask.url,
-            content:{"f": "json"},
-            callbackParamName:"callback"
-        },{useProxy:true});
-        printInfo.then(function(response){
+            content: {
+                "f": "json"
+            },
+            callbackParamName: "callback"
+        }, {
+            useProxy: true
+        });
+        printInfo.then(function (response) {
 
 
             var layoutTemplate, templateNames, mapOnlyIndex, templates;
 
-            layoutTemplate = dojo.filter(response.parameters, function(param, idx) {
-              return param.name === "Layout_Template";
+            layoutTemplate = dojo.filter(response.parameters, function (param, idx) {
+                return param.name === "Layout_Template";
             });
-            
-            if ( layoutTemplate.length == 0 ) {
-              console.log("print service parameters name for templates must be \"Layout_Template\"");
-              return;
+
+            if (layoutTemplate.length == 0) {
+                console.log("print service parameters name for templates must be \"Layout_Template\"");
+                return;
             }
             templateNames = layoutTemplate[0].choiceList;
 
             // remove the MAP_ONLY template then add it to the end of the list of templates 
             mapOnlyIndex = dojo.indexOf(templateNames, "MAP_ONLY");
-            if ( mapOnlyIndex > -1 ) {
-              var mapOnly = templateNames.splice(mapOnlyIndex, mapOnlyIndex + 1)[0];
-              templateNames.push(mapOnly);
+            if (mapOnlyIndex > -1) {
+                var mapOnly = templateNames.splice(mapOnlyIndex, mapOnlyIndex + 1)[0];
+                templateNames.push(mapOnly);
             }
-            
+
             // create a print template for each choice
-            templates = dojo.map(templateNames, function(name) {
-              var plate = new esri.tasks.PrintTemplate();
-              plate.layout = plate.label = name;
-              plate.format = configOptions.printformat;
-              plate.layoutOptions = layoutOptions;
-              return plate;
+            templates = dojo.map(templateNames, function (name) {
+                var plate = new esri.tasks.PrintTemplate();
+                plate.layout = plate.label = name;
+                plate.format = configOptions.printformat;
+                plate.layoutOptions = layoutOptions;
+                return plate;
             });
             updatePrint(templates);
-        }, function(error){
+        }, function (error) {
             updatePrint(templates)
         });
 
 
-    }else{
+    } else {
         updatePrint(templates);
     }
 }
-function updatePrint(templates){
-        // print dijit
+
+function updatePrint(templates) {
+    // print dijit
     var printer = new esri.dijit.Print({
         map: map,
         templates: templates,
@@ -958,6 +995,8 @@ function updatePrint(templates){
 }
 //create a floating pane to hold the measure widget and add a button to the toolbar
 //that allows users to hide/show the measurement widget.
+
+
 function addMeasurementWidget() {
     var fp = new dojox.layout.FloatingPane({
         title: i18n.tools.measure.title,
@@ -981,6 +1020,8 @@ function addMeasurementWidget() {
 
     measure = new esri.dijit.Measurement({
         map: map,
+        defaultAreaUnit: (configOptions.units === "metric") ? "esriSquareKilometers" : "esriSquareMiles",
+        defaultLengthUnit: (configOptions.units === "metric") ? "esriKilometers" : "esriMiles",
         id: 'measureTool'
     }, 'measureDiv');
 
@@ -1002,15 +1043,17 @@ function addMeasurementWidget() {
 }
 
 //Show/hide the measure widget when the measure button is clicked.
+
+
 function toggleMeasure() {
     if (dojo.byId('floater').style.visibility === 'hidden') {
-        
+
         dijit.byId('floater').show();
 
         //if the editor widget exists popups are already disabled. 
-        if(!editorWidget){
+        if (!editorWidget) {
             disablePopups(); //disable map popups otherwise they interfere with measure clicks
-        }else{
+        } else {
             console.log('Editor widget exists so no disabling');
         }
 
@@ -1018,10 +1061,10 @@ function toggleMeasure() {
     } else {
         dijit.byId('floater').hide();
 
-        if(!editorWidget){
+        if (!editorWidget) {
             enablePopups(); //enable map popup windows
         }
-        
+
 
         dijit.byId('toggleButton').set('checked', false); //uncheck the measure toggle button
         //deactivate the tool and clear the results
@@ -1065,6 +1108,8 @@ function destroyOverview() {
 
 //Add the legend to the application - the legend will be 
 //added to the left panel of the application. 
+
+
 function addLegend(layerInfo) {
 
     var legendTb = new dijit.form.ToggleButton({
@@ -1110,23 +1155,27 @@ function addLegend(layerInfo) {
 }
 
 //Determine if the webmap has any editable layers  
+
+
 function hasEditableLayers(layers) {
     var layerInfos = [];
-    dojo.forEach(layers, function(layer){
-      
-        if(layer &&  layer.layerObject ){
+    dojo.forEach(layers, function (layer) {
+
+        if (layer && layer.layerObject) {
 
             var eLayer = layer.layerObject;
 
-            if(eLayer instanceof esri.layers.FeatureLayer && eLayer.isEditable()){
-                if(eLayer.capabilities && eLayer.capabilities === "Query"){
-                  //is capabilities set to Query if so then editing was disabled in the web map so 
-                  //we won't add to editable layers.
-                }else{
-                  layerInfos.push({'featureLayer' : eLayer});
+            if (eLayer instanceof esri.layers.FeatureLayer && eLayer.isEditable()) {
+                if (eLayer.capabilities && eLayer.capabilities === "Query") {
+                    //is capabilities set to Query if so then editing was disabled in the web map so 
+                    //we won't add to editable layers.
+                } else {
+                    layerInfos.push({
+                        'featureLayer': eLayer
+                    });
                 }
 
-            
+
 
             }
 
@@ -1141,6 +1190,8 @@ function hasEditableLayers(layers) {
 
 //if the webmap contains editable layers add an editor button to the map
 //that adds basic editing capability to the app.
+
+
 function addEditor(editLayers) {
 
     //create the button that show/hides the editor 
@@ -1178,12 +1229,14 @@ function addEditor(editLayers) {
 }
 
 //Functions to create and destroy the editor. We do this each time the edit button is clicked. 
+
+
 function createEditor() {
 
     if (editorWidget) {
         return;
     }
- 
+
     if (editLayers.length > 0) {
         //create template picker 
         var templateLayers = dojo.map(editLayers, function (layer) {
@@ -1195,21 +1248,21 @@ function createEditor() {
         });
         dojo.byId('editPanel').appendChild(eDiv);
         var editLayerInfo = editLayers;
-         //add field infos if applicable - this will contain hints if defined in the popup. Also added logic to hide fields that have visible = false. The popup takes 
-         //care of this for the info window but not for the edit window. 
-         dojo.forEach(editLayerInfo, function(layer){
-            if(layer.featureLayer && layer.featureLayer.infoTemplate && layer.featureLayer.infoTemplate.info && layer.featureLayer.infoTemplate.info.fieldInfos){
-             //only display visible fields 
+        //add field infos if applicable - this will contain hints if defined in the popup. Also added logic to hide fields that have visible = false. The popup takes 
+        //care of this for the info window but not for the edit window. 
+        dojo.forEach(editLayerInfo, function (layer) {
+            if (layer.featureLayer && layer.featureLayer.infoTemplate && layer.featureLayer.infoTemplate.info && layer.featureLayer.infoTemplate.info.fieldInfos) {
+                //only display visible fields 
                 var fields = layer.featureLayer.infoTemplate.info.fieldInfos;
                 var fieldInfos = [];
-                dojo.forEach(fields, function(field){
-                  if(field.visible){
-                    fieldInfos.push(field);
-                  }
+                dojo.forEach(fields, function (field) {
+                    if (field.visible) {
+                        fieldInfos.push(field);
+                    }
                 });
                 layer.fieldInfos = fieldInfos;
             }
-         });
+        });
 
 
         var editPanelHeight = dojo.style(dojo.byId("leftPane"), "height");
@@ -1219,12 +1272,12 @@ function createEditor() {
             showTooltip: false,
             rows: "auto",
             columns: "auto",
-            style: "height:" + editPanelHeight + "px;width:" + (parseInt(configOptions.leftpanewidth) -10) + "px;"
-        },"editDiv");
+            style: "height:" + editPanelHeight + "px;width:" + (parseInt(configOptions.leftpanewidth) - 10) + "px;"
+        }, "editDiv");
         templatePicker.startup();
         var settings = {
             map: map,
-            templatePicker:templatePicker,
+            templatePicker: templatePicker,
             layerInfos: editLayerInfo,
             toolbarVisible: false
         };
@@ -1252,6 +1305,8 @@ function destroyEditor() {
 }
 //Utility methods used to enable/disable popups. For example when users are measuring locations
 //on the map we want to turn popups off so they don't appear when users click to specify a measure area. 
+
+
 function enablePopups() {
     if (clickListener) {
         clickHandler = dojo.connect(map, "onClick", clickListener);
@@ -1265,6 +1320,8 @@ function disablePopups() {
 }
 
 //Create menu of social network sharing options (Email, Twitter, Facebook)
+
+
 function createSocialLinks() {
     //extend the menu item so the </a> links are clickable 
     dojo.provide('dijit.anchorMenuItem');
@@ -1318,187 +1375,246 @@ function createSocialLinks() {
     });
 }
 
-    //Uses the Geocoder Widget (from 3.3) 
-    function createSearchTool() {
-        //support pre 3.3 config settings 
-        var geocodeOptions = {};
-
-        if (configOptions.placefinder.placeholder === "") {
-            geocodeOptions.placeholder = i18n.tools.search.title;
-        } else {
-            geocodeOptions.placeholder = configOptions.placefinder.placeholder;
-        }
-        if (configOptions.placefinder.currentExtent || configOptions.searchextent) {
-            geocodeOptions.searchExtent = map.extent;
-        }
-        if (configOptions.placefinder.countryCode !== "") {
-            geocodeOptions.sourceCountry = configOptions.placefinder.countryCode;
-        }
+function createOptions() {
 
 
-        var geocoders = [];
-        var gurl = null;
+    var hasEsri = false,
+        geocoders = dojo.clone(configOptions.helperServices.geocode);
 
-        if(configOptions.placefinder.url !== ""){
-            gurl = configOptions.placefinder.url;
-        }
-        if(configOptions.helperServices && configOptions.helperServices.geocode && configOptions.helperServices.geocode[0] && configOptions.helperServices.geocode[0].url){
-            if(configOptions.helperServices.geocode[0].url.indexOf("/World/GeocodeServer") === -1){
-                gurl = configOptions.helperServices.geocode[0].url
+    dojo.forEach(geocoders, function (geocoder, index) {
+        if (geocoder.url.indexOf(".arcgis.com/arcgis/rest/services/World/GeocodeServer") > -1) {
+            hasEsri = true;
+            geocoder.name = "Esri World Geocoder";
+            geocoder.outFields = "Match_addr, stAddr, City";
+            geocoder.singleLineFieldName = "Single Line";
+            geocoder.placeholder = (configOptions.placefinder.placeholder === "") ? i18n.tools.search.title : configOptions.placefinder.placeholder;
+            geocoder.esri = geocoder.placefinding = true;
+            if (configOptions.placefinder.currentExtent || configOptions.searchextent) {
+                geocoder.searchExtent = map.extent;
             }
-            if(configOptions.helperServices.geocode[0].singleLineFieldName !== ""){
-                configOptions.placefinder.singlelinefieldname = configOptions.helperServices.geocode[0].singleLineFieldName;
+            if (configOptions.placefinder.countryCode !== "") {
+                geocoder.sourceCountry = configOptions.placefinder.countryCode;
             }
         }
-        if(gurl !== null){
-            //custom locator defined 
-            var customOptions = {
-                url: gurl,
-                name: "Custom ",
-                outFields: "*",
-                singleLineFieldName: configOptions.placefinder.singlelinefieldname
-            };
-            if(geocodeOptions.placeholder){
-                customOptions.placeholder = geocodeOptions.placeholder
+
+    });
+    //only use geocoders with a singleLineFieldName that allow placefinding
+    geocoders = dojo.filter(geocoders, function (geocoder) {
+        return (esri.isDefined(geocoder.singleLineFieldName) && esri.isDefined(geocoder.placefinding) && geocoder.placefinding);
+    });
+    var esriIdx;
+    if (hasEsri) {
+        for (var i = 0; i < geocoders.length; i++) {
+            if (esri.isDefined(geocoders[i].esri) && geocoders[i].esri === true) {
+                esriIdx = i;
+                break;
             }
-            geocoders.push(customOptions)
-            geocodeOptions = false;
         }
-
-        var geocoder = new esri.dijit.Geocoder({
-            map: map,
-            autoComplete:true,
-            geocoders: geocoders,
-            autoNavigate: false,
-            theme: "simpleGeocoder",
-            arcgisGeocoder: geocodeOptions
-        }, dojo.create("div", {id: "geocoder"}));
-
-        geocoder.startup();
-        dojo.byId('webmap-toolbar-right').appendChild(geocoder.domNode);
-
-        //if location was set go there 
-        if(configOptions.find){
-            geocoder.value = configOptions.find;
-            geocoder.find();
-    
+    }
+    var options = {
+        map: map,
+        autoNavigate: false,
+        autoComplete: hasEsri,
+        theme: "simpleGeocoder"
+    }
+    if(hasEsri){
+        options.minCharacters = 0;
+        options.maxLocations = 5;
+        options.searchDelay = 100;
+    }
+    //If the World geocoder is primary enable auto complete 
+    if (hasEsri && esriIdx === 0) {
+        options.arcgisGeocoder = geocoders.splice(0, 1)[0]; //geocoders[0];
+        if (geocoders.length > 0) {
+            options.geocoders = geocoders;
         }
+    } else {
+        options.arcgisGeocoder = false;
+        options.geocoders = geocoders;
+    }
 
-        dojo.connect(geocoder, "onFindResults", function (results) {
-            //hide the info window if its currently displayed. 
-            if (map.infoWindow.isShowing) {
-                map.infoWindow.hide();
-            }
-            //Display first geocode result but add a pick list so users can select
-            //others if the first isn't the result they were looking for. 
-             allResults = results.results;
-            if(allResults.length > 0){
-                var l = allResults[0];
-                if(l.extent){
-                    extent = l.extent;
-                }else{
-                    //best view 
-                    extent = map.extent.centerAt(l.feature.geometry).expand(0.625);
-                }
-                setupInfoWindowAndZoom(l.name, l.feature.geometry, extent, 0);
+    return options;
 
-            }
+}
 
+function createSearchTool() {
+    //If user has specified a placefinder url set that to overwrite the geocode helper services
+    if (configOptions.placefinder.url !== "") {
+        configOptions.helperServices.geocode = [];
+        configOptions.helperServices.geocode.push({
+            name: "Custom",
+            outFields: "*",
+            singleLineFieldName: configOptions.placefinder.singleLineFieldName
         });
+    }
+    var options = createOptions();
 
-        dojo.connect(geocoder, "onClear", function () {
-            if (map.infoWindow.isShowing) {
-                map.infoWindow.hide();
+
+    var geocoder = new esri.dijit.Geocoder(options, dojo.create("div", {
+        id: "geocoder"
+    }));
+
+    geocoder.startup();
+    dojo.byId('webmap-toolbar-right').appendChild(geocoder.domNode);
+
+    //if location was set go there 
+    if (configOptions.find) {
+        geocoder.value = configOptions.find;
+        allResults = null;
+        geocoder.find().then(function (response) {
+            var result = response.results && response.results[0];
+            if (result) {
+                allResults = response.results;
+                geocoder.select(result);
             }
         });
     }
 
-    function setupInfoWindowAndZoom(content, geocodeLocation, extent, pos){
-        //clear selection
-        map.infoWindow.clearFeatures();
+    // dojo.connect(geocoder, "onFindResults",handleGeocodeResults);
+    geocoder.on("find-results", checkResults); //handleGeocodeResults);
+    geocoder.on("select", showGeocodingResult); //handleGeocodeResults);
+    geocoder.on("auto-complete", clearResults);
+    geocoder.on("clear", clearResults);
 
 
-        if(allResults.length > 1){
-            //let's update the content to show additional results 
-            var currentLocationName = content;
-            var attr = allResults[pos].feature.attributes;
-            content = "<div id='geocodeCurrentResult' style='display:none;'><span style='font-weight:bold;'>";
-            content += i18n.tools.search.currentLocation;
-            content += "</span></div>";
-            content += "<span>";
 
+}
+
+function checkResults(geocodeResults) {
+    allResults = null;
+    if (geocodeResults && geocodeResults.results && geocodeResults.results.results) {
+        geocodeResults.results = geocodeResults.results.results;
+    }
+    if ((!geocodeResults || !geocodeResults.results || !geocodeResults.results.length)) {
+        //No results
+        console.log("No results found");
+    } else if (geocodeResults) {
+        allResults = geocodeResults.results;
+        console.log(allResults);
+    }
+}
+
+function clearResults() {
+    if (map.infoWindow.isShowing) {
+        map.infoWindow.hide();
+    }
+    allResults = null;
+}
+
+function showGeocodingResult(geocodeResult, pos) {
+    if (!esri.isDefined(pos)) {
+        pos = 0;
+    }
+
+    if (geocodeResult.result) {
+        geocodeResult = geocodeResult.result;
+    }
+
+    if (geocodeResult.extent) {
+        setupInfoWindowAndZoom(geocodeResult.name, geocodeResult.feature.geometry, geocodeResult.extent, geocodeResult, pos);
+    } else { //best view 
+        var bestView = map.extent.centerAt(geocodeResult.feature.geometry).expand(0.0625);
+        setupInfoWindowAndZoom(geocodeResult.name, geocodeResult.feature.geometry, bestView, geocodeResult, pos);
+    }
+}
+
+function setupInfoWindowAndZoom(content, geocodeLocation, newExtent, geocodeResult, pos) {
+    map.infoWindow.clearFeatures();
+
+    //Show info window
+    if (allResults && allResults.length > 1) {
+        //let's update the content to show additional results 
+        var currentLocationName = content;
+        var attr = allResults[pos].feature.attributes;
+        content = "<div id='geocodeCurrentResult' style='display:none;'><span style='font-weight:bold;'>";
+        content += i18n.tools.search.currentLocation;
+        content += "</span></div>";
+        content += "<span>";
+
+        if (!attr.Match_addr) {
             content += currentLocationName;
+        } else {
+            content += attr.Match_addr;
+            if (attr.stAddr && attr.City) {
+                content += " - " + attr.stAddr + ", " + attr.City;
+            } else if (attr.stAddr) {
+                content += " - " + attr.stAddr;
+            }
+        }
 
-            content += "</span>";
-            content += "<div id='geocodeWantOtherResults'>";
-            content += "<A href='JavaScript:showOtherResults()'>";
-            content += i18n.tools.search.notWhatYouWanted;
-            content += "</A>";
-            content += "</div>";
-            content += "<div id='geocodeOtherResults' style='display:none;'><span style='font-weight:bold;'>";
-            content += i18n.tools.search.selectAnother;
-            content += "</span><br/>";
+        content += "</span>";
+        content += "<div id='geocodeWantOtherResults'>";
+        content += "<A href='JavaScript:showOtherResults()'>";
 
-
-          for (var i = 0; i < allResults.length; i++) {
+        content += i18n.tools.search.notWhatYouWanted;
+        content += "</A>";
+        content += "</div>";
+        content += "<div id='geocodeOtherResults' style='display:none;'><span style='font-weight:bold;'>";
+        content += i18n.tools.search.selectAnother;
+        content += "</span><br/>";
+        for (var i = 0; i < allResults.length; i++) {
             if (i !== pos) {
-              var result = allResults[i];
-              attr = result.feature.attributes;
-              content += "<A href='JavaScript:selectAnotherResult(" +i+")'>";
-              content += result.name;
-        
-              content += "</A><br/>";
+                var result = allResults[i];
+                attr = result.feature.attributes;
+                content += "<A href='JavaScript:selectAnotherResult(" + i + ")'>";
+                if (!attr.Match_addr) {
+                    content += result.name;
+                } else {
+                    //content += result.feature.attributes.Place_addr ? (" - " + result.feature.attributes.Place_addr) : ""
+                    content += attr.Match_addr;
+                    if (attr.stAddr && attr.City) {
+                        content += " - " + attr.stAddr + ", " + attr.City;
+                    } else if (attr.stAddr) {
+                        content += " - " + attr.stAddr;
+                    }
+                }
+
+                content += "</A><br/>";
             }
-          }
-          content += "</div>";
-
-
         }
-
-        //display a popup for the result
-        map.infoWindow.setTitle(i18n.tools.search.popupTitle);
-        map.infoWindow.setContent(content);
-        
-        //Ensure popups don't interfere wtih the editor window contents. 
-        var handler = dojo.connect(map.infoWindow, "onHide", function(){
-            dojo.disconnect(handler);
-            if(editorWidget){
-                destroyEditor();
-                createEditor();
-            }
-        });
-        
-        
-        map.infoWindow.show(geocodeLocation);
-        map.setExtent(extent);
-
+        content += "</div>";
 
     }
-    function showOtherResults(){
-        dojo.style(dojo.byId("geocodeWantOtherResults"),"display","none");
-        dojo.style(dojo.byId("geocodeCurrentResult"),"display","block");
-        dojo.style(dojo.byId("geocodeOtherResults"),"display","block");
 
-    }
-    function selectAnotherResult(pos){
-     //TODO _ SET EXTENT FOR ADDITINOAL RESTULS 
-     var location = allResults[pos];
-     if(location){
-        if(location.extent){
-         extent = location.extent;
-        }else{
-            //best view 
-            extent = map.extent.centerAt(location.feature.geometry).expand(0.625);
+    //display a popup for the result
+    map.infoWindow.setTitle(i18n.tools.search.popupTitle);
+    map.infoWindow.setContent(content);
+    //Ensure popups don't interfere wtih the editor window contents. 
+    var handler = dojo.connect(map.infoWindow, "onHide", function () {
+        dojo.disconnect(handler);
+        if (editorWidget) {
+            destroyEditor();
+            createEditor();
         }
-        setupInfoWindowAndZoom(location.name, location.feature.geometry, extent, pos);
-     }
-    }
+    });
 
+    var location = new esri.geometry.Point(geocodeLocation.x, geocodeLocation.y, geocodeLocation.spatialReference);
+    var handler = dojo.connect(map, "onExtentChange", function () {
+        map.infoWindow.show(location);
+        dojo.disconnect(handler);
+    });
+
+    map.setExtent(newExtent);
+
+}
+
+function showOtherResults() {
+    dojo.style(dojo.byId("geocodeWantOtherResults"), "display", "none");
+    dojo.style(dojo.byId("geocodeCurrentResult"), "display", "block");
+    dojo.style(dojo.byId("geocodeOtherResults"), "display", "block");
+
+}
+
+function selectAnotherResult(pos) {
+    showGeocodingResult(allResults[pos], pos);
+}
 
 
 
 
 //Add the time slider if the webmap has time-aware layers 
+
+
 function addTimeSlider(timeProperties) {
     esri.show(dojo.byId('timeFloater'));
     //add time button and create floating panel
@@ -1718,42 +1834,42 @@ function createTimeSlider(timeProperties) {
         var timeString, datePattern;
         if (timeProperties.timeStopInterval !== undefined) {
             switch (timeProperties.timeStopInterval.units) {
-                case 'esriTimeUnitsCenturies':
-                    datePattern =  i18n.tools.time.centuryPattern; // 'yyyy G'
-                    break;
-                case 'esriTimeUnitsDecades':
-                    datePattern = i18n.tools.time.decadePattern; //'yyyy'
-                    break;
-                case 'esriTimeUnitsYears':
-                    datePattern = i18n.tools.time.yearPattern; //'MMMM yyyy'
-                    break;
-                case 'esriTimeUnitsWeeks':
-                    datePattern = i18n.tools.time.weekPattern; //'MMMM d, yyyy'
-                    break;
-                case 'esriTimeUnitsDays':
-                    datePattern = i18n.tools.time.weekPattern; //'MMMM d, yyyy'
-                    break;
-                case 'esriTimeUnitsHours':
-                    datePattern = i18n.tools.time.hourTimePattern; //'h:m:s.SSS a'
-                    break;
-                case 'esriTimeUnitsMilliseconds':
-                    datePattern = i18n.tools.time.millisecondTimePattern; //'h:m:s.SSS a'
-                    break;
-                case 'esriTimeUnitsMinutes':
-                    datePattern = i18n.tools.time.minuteTimePattern; //'h:m:s.SSS a'
-                    break;
-                case 'esriTimeUnitsMonths':
-                    datePattern = i18n.tools.time.monthPattern; //'MMMM d, y'
-                    break;
-                case 'esriTimeUnitsSeconds':
-                    datePattern = i18n.tools.time.secondTimePattern; //'h:m:s.SSS a'
-                    break;
+            case 'esriTimeUnitsCenturies':
+                datePattern = i18n.tools.time.centuryPattern; // 'yyyy G'
+                break;
+            case 'esriTimeUnitsDecades':
+                datePattern = i18n.tools.time.decadePattern; //'yyyy'
+                break;
+            case 'esriTimeUnitsYears':
+                datePattern = i18n.tools.time.yearPattern; //'MMMM yyyy'
+                break;
+            case 'esriTimeUnitsWeeks':
+                datePattern = i18n.tools.time.weekPattern; //'MMMM d, yyyy'
+                break;
+            case 'esriTimeUnitsDays':
+                datePattern = i18n.tools.time.weekPattern; //'MMMM d, yyyy'
+                break;
+            case 'esriTimeUnitsHours':
+                datePattern = i18n.tools.time.hourTimePattern; //'h:m:s.SSS a'
+                break;
+            case 'esriTimeUnitsMilliseconds':
+                datePattern = i18n.tools.time.millisecondTimePattern; //'h:m:s.SSS a'
+                break;
+            case 'esriTimeUnitsMinutes':
+                datePattern = i18n.tools.time.minuteTimePattern; //'h:m:s.SSS a'
+                break;
+            case 'esriTimeUnitsMonths':
+                datePattern = i18n.tools.time.monthPattern; //'MMMM d, y'
+                break;
+            case 'esriTimeUnitsSeconds':
+                datePattern = i18n.tools.time.secondTimePattern; //'h:m:s.SSS a'
+                break;
             }
             var startTime = formatDate(timeExtent.startTime, datePattern);
             var endTime = formatDate(timeExtent.endTime, datePattern);
             timeString = esri.substitute({
                 "start_time": startTime,
-                    "end_time": endTime
+                "end_time": endTime
             }, i18n.tools.time.timeRange);
         } else {
             timeString = esri.substitute({
@@ -1783,7 +1899,7 @@ function createElevationProfileTools() {
     // IF SCALEBAR IS NOT DISPLAYED THEN USE MILES AS DEFAULT //
     var defaultDistanceUnits = measure.units.esriMiles;
     if (configOptions.displayscalebar === "true" || configOptions.displayscalebar === true) {
-        if (configOptions.units === "metric"){//(i18n.viewer.main.scaleBarUnits === 'metric') {
+        if (configOptions.units === "metric") { //(i18n.viewer.main.scaleBarUnits === 'metric') {
             defaultDistanceUnits = measure.units.esriKilometers;
         }
     }
@@ -1804,19 +1920,21 @@ function createElevationProfileTools() {
 }
 
 
-      function adjustPopupSize() {
-        var box = dojo.contentBox(map.container);        
-        
-        var width = 270, height = 300, // defaults
-            newWidth = Math.round(box.w * 0.60),             
-                        newHeight = Math.round(box.h * 0.45);        
-        if (newWidth < width) {
-          width = newWidth;
-        }
-        
-        if (newHeight < height) {
-          height = newHeight;
-        }
-        
-        map.infoWindow.resize(width, height);
-      }
+function adjustPopupSize() {
+    var box = dojo.contentBox(map.container);
+
+    var width = 270,
+        height = 300,
+        // defaults
+        newWidth = Math.round(box.w * 0.60),
+        newHeight = Math.round(box.h * 0.45);
+    if (newWidth < width) {
+        width = newWidth;
+    }
+
+    if (newHeight < height) {
+        height = newHeight;
+    }
+
+    map.infoWindow.resize(width, height);
+}

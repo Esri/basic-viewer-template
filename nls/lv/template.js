@@ -61,10 +61,10 @@
       weekPattern: "yyyy.MM.dd",
       hourTimePattern: "H a",
       // e.g. for German: "H:mm:ss:SSS"
-      millisecondTimePattern:"ķ_h:m:ss.SSS a_ū",
+      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "HH:mm",
       // e.g. for German: "H:mm"
-      monthPattern: "MMMM d, y",
+      monthPattern: "y.MMMM.d",
       secondTimePattern: "h:m:s.SSS a",
       title: "Parādīt laika slīdni",
       label: "Laiks",

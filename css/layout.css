@@ -466,6 +466,9 @@ background-image:none !important;
 .simpleGeocoder .esriGeocoderResults{
   color:#333;
 }
+.simpleGeocoder .esriGeocoderResult{
+  color:#333;
+}
 .simpleGeocoder{
   top:0;
   vertical-align: top;

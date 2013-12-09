@@ -61,10 +61,10 @@
       weekPattern: "d, MMMM ,yyyy",
       hourTimePattern: "h a",
       // e.g. for German: "H:mm:ss:SSS"
-      millisecondTimePattern:"כן_h:m:ss.SSS a_ש",
+      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "h:mm a",
       // e.g. for German: "H:mm"
-      monthPattern: "MMMM d, y",
+      monthPattern: "d, MMMM,  y",
       secondTimePattern: "h:m:s.SSS a",
       title: "הצג סרגל זמן",
       label: "זמן",

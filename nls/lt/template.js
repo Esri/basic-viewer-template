@@ -36,7 +36,7 @@
         label: "Twitter"
       },
       email:{
-        label: "Elektroninis paštas",
+        label: "El. paštas",
         message: "Išregistruoti šį žemėlapį"
       }    
     }
@@ -58,10 +58,10 @@
       centuryPattern: "yyyy G",
       decadePattern: "yyyy", 
       yearPattern: "yyyy MMMM",
-      weekPattern: "yyyy.MM.dd",
+      weekPattern: "yyyy.MMMM.d",
       hourTimePattern: "H a",
       // e.g. for German: "HH:mm:ss:SSS"
-      millisecondTimePattern:"Į_h:m:ss.SSS a_š",
+      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "HH:mm",
       // e.g. for German: "HH:mm"
       monthPattern: "y MMMM, d",
@@ -81,7 +81,7 @@
     },
     details: {
       title: "Rodyti žemėlapio apibūdinimą",
-      label: "Išsami informacija"
+      label: "Detali informacija"
     },
     bookmark:{
       title: "Rodyti žymes",
@@ -93,7 +93,7 @@
       label: "Sluoksniai"
     },
     search: {
-      title: "Ieškoti adreso arba vietos",
+      title: "Surasti adresą arba vietą",
       popupTitle: "Vieta",
       currentLocation: "Esama padėtis",
       notWhatYouWanted: "Ne tai ko norėjote?" ,

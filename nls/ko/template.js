@@ -61,7 +61,7 @@
       weekPattern: "yyyy MMMM d",
       hourTimePattern: "a h",
       // e.g. for German: "H:mm:ss:SSS"
-      millisecondTimePattern:"한_h:m:ss.SSS a_빠",
+      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "a h:mm",
       // e.g. for German: "H:mm"
       monthPattern: "MMMM d, y",

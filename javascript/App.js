@@ -4,7 +4,6 @@ define(
    "dojo/_base/kernel",
    "dojo/_base/array",
    "dojo/dom-class",
-   "dojo/cookie",
    "dojo/_base/json",
    "dojo/Deferred",
    "dojo/promise/all",
@@ -17,7 +16,6 @@ define(
         kernel, 
         array, 
         domClass, 
-        dojoCookie,
         dojoJson,
         Deferred, 
         all, 
@@ -43,14 +41,16 @@ define(
                 
                 //need to set the sharing url here so that when we query the applciation and organization the correct 
                 //location is searched. 
-                this.setDefaults();
-                var orgDef = this.queryOrganization();
-                orgDef.then(lang.hitch(this, function(){
-                  all([ this.getlocalization(), this.queryApplication() ]).then(lang.hitch(this,function(results){
-                       deferred.resolve(this.config);
+                this.setDefaults().then(lang.hitch(this, function(){
+        
+                  var orgDef = this.queryOrganization();
+                  orgDef.then(lang.hitch(this, function(){
+                    all([ this.getlocalization(), this.queryApplication() ]).then(lang.hitch(this,function(results){
+                         deferred.resolve(this.config);
+                    }));
                   }));
-                }));
 
+                }));
                 return deferred.promise;
             },
             getlocalization: function(){
@@ -86,7 +86,7 @@ define(
             setDefaults: function(){
               //Check to see if the app is hosted or a portal. In those cases set the sharing url and the proxy. Otherwise use
               //the sharing url set it to arcgis.com. We know app is hosted (or portal) if it has /apps/ in the url 
-  
+              var deferred = new Deferred();
 
               //templates can be at /apps or /home/webmap/templates
               var appLocation = location.pathname.indexOf("/apps/");
@@ -109,9 +109,7 @@ define(
               }
 
               esri.arcgis.utils.arcgisUrl = this.config.sharingurl + "/sharing/rest/content/items";
-              //esri.dijit._arcgisUrl = this.config.sharingurl + "/sharing/rest";  
-   
-      
+          
               //Set the proxy. If the app is hosted use the default proxy. 
               if(this.config.proxyurl){
                 esri.config.defaults.io.proxyUrl = this.config.proxyurl;
@@ -122,7 +120,20 @@ define(
               if(this.config.helperServices && this.config.helperServices.geometry && this.config.helperServices.geometry.url){
                 esri.config.defaults.geometryService = new esri.tasks.GeometryService(this.config.helperServices.geometry.url);
               }
-     
+    
+             //check sign-in status 
+             
+              esri.id.checkSignInStatus(this.config.sharingurl + "/sharing").then(
+                  function(credential){
+                    deferred.resolve();
+                  },
+                  function(error){
+                    deferred.resolve();
+                  }
+              );
+
+
+              return deferred.promise;
             },
              queryApplication : function(){
     
@@ -151,65 +162,56 @@ define(
 
                 var deferred = new Deferred();
                //Is this a hosted app or is it an app with an organization url set to query for info
-                if(this.config.sharingurl && this.isOrg){
-
-                var requestParams;
-                var cookie = dojoCookie("esri_auth");
-                if(cookie && cookie.length > 0){
-                  var userInfo = dojoJson.fromJson(dojoCookie("esri_auth"));
-                  userToken = userInfo.token || null;
-                  requestParams = {
-                    "f": "json",
-                    "token": userToken
-                  };
-                }else{
-                  requestParams = {
-                    "f": "json"
-                  }
-                }
 
                  var req = esri.request({
                     url: this.config.sharingurl + "/sharing/rest/portals/self",
-                    content: requestParams, // {"f": "json"},
+                    //content: requestParams,
+                    content: {"f": "json"},
                     callbackParamName:"callback"
                  });
                  req.then(lang.hitch(this, function(response){
         
-                        //Is there a custom basemap group owner and title  or id? 
-                        var q = this._parseQuery(response.basemapGalleryGroupQuery);
-                        if(q.id){
-                          this.config.basemapgroup.id = q.id;
-                        }else if(q.title && q.owner){
-                          this.config.basemapgroup.title = q.title;
-                          this.config.basemapgroup.owner = q.owner;
-                        }
+                    this._updateDefaults(response);
+                    deferred.resolve(true); 
 
-                        //Get Units 
-                        if(response.units){
-                          this.config.units = response.units;
-                        }else{
-                          //use english 
-                          this.config.units = "english";
-                        }
-                        //look for helper services and if they exist set them
-                        if(response.isPortal && response.portalMode === "single tenant"){
-                          this.config.sharingurl = response.portalHostname;
-                           esri.arcgis.utils.arcgisUrl = response.portalHostname + "/sharing/rest/content/items";
-                        }
-                        lang.mixin(this.config.helperServices, response.helperServices);
-                        //update geometry service (note: replaced the setDefaults call again)
-                        if(this.config.helperServices && this.config.helperServices.geometry && this.config.helperServices.geometry.url){
-                          esri.config.defaults.geometryService = new esri.tasks.GeometryService(this.config.helperServices.geometry.url);
-                        }
-          
-                        deferred.resolve(true); 
-                 }));
-                }else{
-  
+                 }), lang.hitch(this, function(error){
+                  esri.id.credentials = [];
                   deferred.resolve(true);
-   
-                }
+
+
+                }));
+ 
                 return deferred.promise;
+            },
+            _updateDefaults: function(response){
+             //Is there a custom basemap group owner and title  or id? 
+                  var q = this._parseQuery(response.basemapGalleryGroupQuery);
+                  if(q.id){
+                    this.config.basemapgroup.id = q.id;
+                  }else if(q.title && q.owner){
+                    this.config.basemapgroup.title = q.title;
+                    this.config.basemapgroup.owner = q.owner;
+                  }
+
+                  //Get Units 
+                  if(response.units){
+                    this.config.units = response.units;
+                  }else{
+                    //use english 
+                    this.config.units = "english";
+                  }
+                  //look for helper services and if they exist set them
+                  if(response.isPortal && response.portalMode === "single tenant"){
+                    this.config.sharingurl = response.portalHostname;
+                     esri.arcgis.utils.arcgisUrl = response.portalHostname + "/sharing/rest/content/items";
+                  }
+   
+                  lang.mixin(this.config.helperServices, response.helperServices);
+                  //update geometry service (note: replaced the setDefaults call again)
+                  if(this.config.helperServices && this.config.helperServices.geometry && this.config.helperServices.geometry.url){
+                    esri.config.defaults.geometryService = new esri.tasks.GeometryService(this.config.helperServices.geometry.url);
+                  }
+          
             },
             _parseQuery: function(queryString){
     
