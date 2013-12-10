@@ -1,13 +1,13 @@
 basic-viewer-template
 =====================
-*Basic Viewer* is a configurable application template that enables you to display an ArcGIS web map using a variety of tools. The template can be configured using the following options:
+*Basic Viewer* is a configurable application template that enables you to display an ArcGIS web map using a variety of tools. 
 
 ![Screen Shot](https://dl.dropboxusercontent.com/u/24627279/screenshots/basic_viewer_1.jpg)
 
 [View it live] (http://www.arcgis.com/apps/OnePane/basicviewer/index.html?webmap=f5b13dbed07c46cdb783cf361833aa6b)
 
 #Features
-The author of the application can choose to enable the following functionality.
+The template can be configured using the following options:
 
 - **Map:** Choose the web map used in your application.
 - **Color Scheme:** Choose between five color schemes for the application (Blue, Gray, Green, Orange, Purple).
