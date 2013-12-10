@@ -39,6 +39,7 @@ The author of the application can choose to enable the following functionality.
 3. Access the .html page 
 4. See the readme.html page for more details. 
 
+For addtional customization options view the [wiki](https://github.com/Esri/basic-viewer-template/wiki). 
 
 #Requirements
 
