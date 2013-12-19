@@ -418,7 +418,7 @@ function initUI(response) {
             content: esri.substitute({
                 close_title: i18n.panel.close.title,
                 close_alt: i18n.panel.close.label
-            }, '<div style="float:right;clear:both;" id="paneCloseBtn"><a title=${close_title} alt=${close_alt} href="JavaScript:hideLeftPanel();"><img src=images/closepanel.png border="0"/></a></div>')
+            }, '<div style="float:right;clear:both;" id="paneCloseBtn" onClick="hideLeftPanel();"><a title=${close_title} alt=${close_alt} href="#"><img src=images/closepanel.png border="0"/></a></div>')
         });
         bc.addChild(cp);
         var cp2 = new dijit.layout.StackContainer({
