@@ -34,10 +34,11 @@ The template can be configured using the following options:
 
 #Instructions
 
-1. Download and unzip the .zip file or clone the repo. 
-2. Web-enable the directory
-3. Access the .html page 
-4. See the readme.html page for more details. 
+1. Download and unzip the .zip file or clone the repo.
+2. Web-enable the directory. 
+3. Access the .html page in a browser
+
+Note: If your application edits features in a feature service, contains secure services or web maps that aren't shared publicly or generates requests that exceed 200 characters you may need to setup and use a proxy page. Common situations where you may exceed the URL length are using complex polygons as input to a task or specifying a spatial reference using well-known text (WKT). For details on installing and configuring a proxy page see [Using a proxy page](https://developers.arcgis.com/javascript/jshelp/ags_proxy.html).
 
 For addtional customization options view the [wiki](https://github.com/Esri/basic-viewer-template/wiki). 
 
