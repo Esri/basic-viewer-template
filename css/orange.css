@@ -6,9 +6,21 @@ body {
 #leftPane {
   background-color:#fff9de;
 }
+.HomeButton .home{
+  background-color: #db870a;
+}
+.LocateButton .zoomLocateButton {
+ background-color: #db870a;
+}
+.HomeButton .home:hover{
+ background-color: #CEE1EC;  
+}
+.LocateButton .zoomLocateButton:hover {
+ background-color: #CEE1EC;
+}
 /*override claro background and other props*/
 #toolbarContainer_bv .dijitToolbar {
-  background:url(../images/orange/toolbar_bg.png) repeat-x #545454;
+  background:url(../images/orange/toolbar_bg.png) repeat-x #db870a;
 }
 /*Measure toggle button*/
 .claro .dijitToolbar .dijitButtonNode:hover {
@@ -30,7 +42,7 @@ body {
 
 
 .dojoxFloatingPaneTitle{
-  background:url(../images/orange/toolbar_bg.png) repeat-x #545454;
+  background:url(../images/orange/toolbar_bg.png) repeat-x #db870a;
 }
 
 .esriPopup .titlePane{
@@ -38,19 +50,21 @@ body {
   border-style:none;
 }
 
-.esriPopup .pointer, .esriPopup .outerPointer {
-    background: url("../images/orange/popup_o.png") no-repeat scroll 0 0 transparent;
+.esriPopup .pointer.topRight, esriPopup .pointer.topLeft, .esriPopup .pointer.top {
+    background: url("../images/orange/popup_o.png") no-repeat 0 -617px;
+    width:24px;
+    height:14px;
 }
 
 /*slider background*/
 .esriSimpleSliderVertical .esriSimpleSliderIncrementButton ,.esriSimpleSliderVertical .esriSimpleSliderDecrementButton  {
-  background:url(../images/orange/toolbar_bg.png) repeat-x #545454;
+  background:url(../images/orange/toolbar_bg.png) repeat-x #db870a;
   border:solid 1px #545454;
 }
 
 /*Identity Manager Dialog*/
 .claro .dijitDialogTitleBar {
-  background:url(../images/orange/toolbar_bg.png) repeat-x #545454;
+  background:url(../images/orange/toolbar_bg.png) repeat-x #db870a;
   color:#fff;
   border: none !important;
 }

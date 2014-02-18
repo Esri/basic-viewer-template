@@ -2,7 +2,8 @@ dojo.require("esri.widgets");
 dojo.require("esri.arcgis.utils");
 dojo.require("dojox.layout.FloatingPane");
 dojo.require("utilities.custommenu");
-
+dojo.require("esri.dijit.HomeButton");
+dojo.require("esri.dijit.LocateButton");
 dojo.require("apl.ElevationsChart.Pane");
 
 var map;
@@ -16,7 +17,7 @@ var allResults = null;
 var measure;
 
 function initMap(options) {
-/*Patch to fix issue with floating panes used to display the measure and time panel. They
+    /*Patch to fix issue with floating panes used to display the measure and time panel. They
        moved slightly each time the window was toggled due to this bug
        http://bugs.dojotoolkit.org/ticket/5849
        */
@@ -41,7 +42,7 @@ function initMap(options) {
             })
         }).play();
         this.resize(dojo.coords(this.domNode));
-    }
+    };
 
 
 
@@ -58,7 +59,7 @@ function initMap(options) {
     if (options.basemapgrouptitle !== undefined && options.basemapgroupowner !== undefined) {
         configOptions.basemapgroup.title = options.basemapgrouptitle;
         configOptions.basemapgroup.owner = options.basemapgroupowner;
-    };
+    }
     if (configOptions.leftpanelvisible) {
         configOptions.leftPanelVisibility = (configOptions.leftpanelvisible === 'true' || configOptions.leftpanelvisible === true) ? true : false;
     }
@@ -74,7 +75,7 @@ function initMap(options) {
     configOptions.displaybookmarks = (configOptions.displaybookmarks === "true" || configOptions.displaybookmarks === true) ? true : false;
     configOptions.displaylayerlist = (configOptions.displaylayerlist === "true" || configOptions.displaylayerlist === true) ? true : false;
     configOptions.displaydetails = (configOptions.displaydetails === "true" || configOptions.displaydetails === true) ? true : false;
-    configOptions.displaytimeslider = (configOptions.displaytimeslider === "true" || configOptions || displaytimeslider === true) ? true : false;
+    configOptions.displaytimeslider = (configOptions.displaytimeslider === "true" || configOptions.displaytimeslider === true) ? true : false;
     configOptions.displayelevation = (configOptions.displayelevation === "true" || configOptions.displayelevation === true) ? true : false;
     configOptions.displayprint = (configOptions.displayprint === "true" || configOptions.displayprint === true) ? true : false;
     configOptions.displayprintlegend = (configOptions.displayprintlegend === "true" || configOptions.displayprintlegend === true) ? true : false;
@@ -136,7 +137,7 @@ function createApp() {
     if (configOptions.displayslider) {
         configOptions.displaySlider = true;
     } else {
-        configOptions.displaySlider;
+        configOptions.displaySlider = false;
     }
 
 
@@ -157,6 +158,9 @@ function createApp() {
                 }
             }
         }
+    }else if (configOptions.appid && configOptions.appextent.length > 0) {
+        var extent = [configOptions.appextent[0][0],configOptions.appextent[0][1], configOptions.appextent[1][0], configOptions.appextent[1][1]];
+        getItem(configOptions.webmap, extent);
     } else {
         createMap(configOptions.webmap);
     }
@@ -228,6 +232,8 @@ function createMap(webmapitem) {
         clickListener = response.clickEventListener;
         map = response.map;
 
+
+
         //Constrain the extent of the map to the webmap's initial extent
         if (configOptions.constrainmapextent) {
             webmapExtent = response.map.extent.expand(1.5);
@@ -270,7 +276,23 @@ function createMap(webmapitem) {
             }
 
         }
+
         map.setExtent(initialExtent);
+
+        //add the map widgets (home, locate) if specified 
+        if(configOptions.displaymapwidgets){
+                var homeDiv = dojo.create("div",{id:"homeDiv"},"map");
+                var homeButton = new esri.dijit.HomeButton({
+                    map: map
+                },homeDiv);
+                homeButton.startup();
+                var locateDiv = dojo.create("div",{id:"locateDiv"},"map");
+                var locationButton = new esri.dijit.LocateButton({
+                    map: map
+                },locateDiv);
+                locationButton.startup();           
+        }
+
     });
 
     mapDeferred.addErrback(function (error) {
@@ -352,9 +374,16 @@ function initUI(response) {
 
     if (configOptions.displayscalebar === true) {
         //add scalebar
+        //is the map embedded? If so set scalebar value to dual otherwise use the units 
+        var scalebarUnits;
+        if(configOptions.embed){
+            scalebarUnits = "dual";
+        }else{
+            scalebarUnits = configOptions.units;
+        }
         var scalebar = new esri.dijit.Scalebar({
             map: map,
-            scalebarUnit: configOptions.units //i18n.viewer.main.scaleBarUnits //metric or english
+            scalebarUnit: scalebarUnits //metric, english or dual
         });
     }
 
@@ -501,7 +530,7 @@ function initUI(response) {
                     'thumbCount': 2,
                     'thumbMovingRate': 2000,
                     'timeStopInterval': findDefaultTimeInterval(fullExtent)
-                }
+                };
                 addTimeSlider(timeProperties);
             } else {
                 configOptions.displaytimeslider = false;
@@ -677,11 +706,11 @@ function getBasemapGroup() {
         basemapGroup = {
             "owner": configOptions.basemapgroup.owner,
             "title": configOptions.basemapgroup.title
-        }
+        };
     } else if (configOptions.basemapgroup.id) {
         basemapGroup = {
             "id": configOptions.basemapgroup.id
-        }
+        };
     }
     return basemapGroup;
 
@@ -710,7 +739,7 @@ function addBasemapGalleryMenu() {
     cp.set('content', basemapMenu.domNode);
 
     dojo.connect(basemapGallery, 'onLoad', function () {
-        var menu = dijit.byId("basemapMenu")
+        var menu = dijit.byId("basemapMenu");
         dojo.forEach(basemapGallery.basemaps, function (basemap) {
             //Add a menu item for each basemap, when the menu items are selected
             menu.addChild(new utilities.custommenu({
@@ -909,7 +938,7 @@ function addPrint(layers) {
         legendLayers = dojo.map(layers, function (layer) {
             return {
                 "layerId": layer.id
-            }
+            };
         });
     }
 
@@ -947,7 +976,7 @@ function addPrint(layers) {
                 return param.name === "Layout_Template";
             });
 
-            if (layoutTemplate.length == 0) {
+            if (layoutTemplate.length === 0) {
                 console.log("print service parameters name for templates must be \"Layout_Template\"");
                 return;
             }
@@ -970,7 +999,7 @@ function addPrint(layers) {
             });
             updatePrint(templates);
         }, function (error) {
-            updatePrint(templates)
+            updatePrint(templates);
         });
 
 
@@ -1015,7 +1044,7 @@ function addMeasurementWidget() {
         innerHTML: esri.substitute({
             close_title: i18n.panel.close.title,
             close_alt: i18n.panel.close.label
-        }, '<a alt=${close_alt} title=${close_title} href="JavaScript:toggleMeasure();"><img  src="images/close.png"/></a>')
+        }, '<a alt=${close_alt} title=${close_title} href="#" onClick="toggleMeasure();"><img  src="images/close.png"/></a>')
     }, titlePane);
 
     measure = new esri.dijit.Measurement({
@@ -1047,8 +1076,10 @@ function addMeasurementWidget() {
 
 function toggleMeasure() {
     if (dojo.byId('floater').style.visibility === 'hidden') {
+        //make sure the floater isn't hidden behind the toolbar
+         dojo.style(dojo.byId("floater"),"top", "0");
+         dijit.byId('floater').show();
 
-        dijit.byId('floater').show();
 
         //if the editor widget exists popups are already disabled. 
         if (!editorWidget) {
@@ -1231,69 +1262,6 @@ function addEditor(editLayers) {
 //Functions to create and destroy the editor. We do this each time the edit button is clicked. 
 
 
-function createEditor() {
-
-    if (editorWidget) {
-        return;
-    }
-
-    if (editLayers.length > 0) {
-        //create template picker 
-        var templateLayers = dojo.map(editLayers, function (layer) {
-            return layer.featureLayer;
-        });
-
-        var eDiv = dojo.create("div", {
-            id: "editDiv"
-        });
-        dojo.byId('editPanel').appendChild(eDiv);
-        var editLayerInfo = editLayers;
-        //add field infos if applicable - this will contain hints if defined in the popup. Also added logic to hide fields that have visible = false. The popup takes 
-        //care of this for the info window but not for the edit window. 
-        dojo.forEach(editLayerInfo, function (layer) {
-            if (layer.featureLayer && layer.featureLayer.infoTemplate && layer.featureLayer.infoTemplate.info && layer.featureLayer.infoTemplate.info.fieldInfos) {
-                //only display visible fields 
-                var fields = layer.featureLayer.infoTemplate.info.fieldInfos;
-                var fieldInfos = [];
-                dojo.forEach(fields, function (field) {
-                    if (field.visible) {
-                        fieldInfos.push(field);
-                    }
-                });
-                layer.fieldInfos = fieldInfos;
-            }
-        });
-
-
-        var editPanelHeight = dojo.style(dojo.byId("leftPane"), "height");
-
-        var templatePicker = new esri.dijit.editing.TemplatePicker({
-            featureLayers: templateLayers,
-            showTooltip: false,
-            rows: "auto",
-            columns: "auto",
-            style: "height:" + editPanelHeight + "px;width:" + (parseInt(configOptions.leftpanewidth) - 10) + "px;"
-        }, "editDiv");
-        templatePicker.startup();
-        var settings = {
-            map: map,
-            templatePicker: templatePicker,
-            layerInfos: editLayerInfo,
-            toolbarVisible: false
-        };
-        var params = {
-            settings: settings
-        };
-
-
-        editorWidget = new esri.dijit.editing.Editor(params);
-
-        editorWidget.startup();
-
-        disablePopups();
-    }
-
-}
 
 function destroyEditor() {
     if (editorWidget) {
@@ -1321,7 +1289,73 @@ function disablePopups() {
 
 //Create menu of social network sharing options (Email, Twitter, Facebook)
 
+function createEditor() {
 
+    if (editorWidget) {
+        return;
+    }
+
+    if (editLayers.length > 0) {
+
+        var editLayerInfo = editLayers;
+        var templateLayers = dojo.map(editLayers, function(layer) {
+            return layer.featureLayer;
+        });
+        //add field infos if applicable - this will contain hints if defined in the popup. Also added logic to hide fields that have visible = false. The popup takes 
+        //care of this for the info window but not for the edit window. 
+        dojo.forEach(editLayerInfo, function(layer) {
+
+
+            if (layer.featureLayer && layer.featureLayer.infoTemplate && layer.featureLayer.infoTemplate.info && layer.featureLayer.infoTemplate.info.fieldInfos) {
+                //only display visible fields 
+                var fields = layer.featureLayer.infoTemplate.info.fieldInfos;
+                var fieldInfos = [];
+                dojo.forEach(fields, function(field) {
+                    if (field.visible) {
+                        fieldInfos.push(field);
+                    }
+                });
+                layer.fieldInfos = fieldInfos;
+            }
+        });
+
+
+        var editPanelHeight = dojo.style(dojo.byId("leftPane"), "height");
+
+        var templatePicker = new esri.dijit.editing.TemplatePicker({
+            featureLayers: templateLayers,
+            showTooltip: false,
+            rows: "auto",
+            columns: "auto",
+            style: "height:" + editPanelHeight + "px;width:" + (parseInt(configOptions.leftpanewidth) - 10) + "px;"
+        },dojo.create("div"));
+        dojo.place(templatePicker.domNode, "editPanel", "first");
+
+
+        templatePicker.startup();
+
+        var params = {
+            map: map,
+            templatePicker: templatePicker,
+            layerInfos: editLayerInfo,
+            toolbarVisible: configOptions.displayeditortoolbar
+        };
+        if(configOptions.displayeditortoolbar){
+                dojo.addClass(templatePicker.domNode, "toolbar");
+        }
+        editorWidget = new esri.dijit.editing.Editor({
+            settings: params
+        },dojo.create("div"));
+        dojo.place(editorWidget.domNode, "editPanel", "last");
+
+        editorWidget.startup();
+
+
+
+        disablePopups();
+    }
+
+}
 function createSocialLinks() {
     //extend the menu item so the </a> links are clickable 
     dojo.provide('dijit.anchorMenuItem');
@@ -1375,6 +1409,7 @@ function createSocialLinks() {
     });
 }
 
+
 function createOptions() {
 
 
@@ -1398,9 +1433,14 @@ function createOptions() {
         }
 
     });
-    //only use geocoders with a singleLineFieldName that allow placefinding
+    //only use geocoders with a singleLineFieldName that allow placefinding unless its custom
+
     geocoders = dojo.filter(geocoders, function (geocoder) {
-        return (esri.isDefined(geocoder.singleLineFieldName) && esri.isDefined(geocoder.placefinding) && geocoder.placefinding);
+        if(geocoder.name && geocoder.name === "Custom"){
+            return (esri.isDefined(geocoder.singleLineFieldName));
+        }else{
+         return (esri.isDefined(geocoder.singleLineFieldName) && esri.isDefined(geocoder.placefinding) && geocoder.placefinding);
+        }
     });
     var esriIdx;
     if (hasEsri) {
@@ -1416,8 +1456,8 @@ function createOptions() {
         autoNavigate: false,
         autoComplete: hasEsri,
         theme: "simpleGeocoder"
-    }
-    if(hasEsri){
+    };
+    if (hasEsri) {
         options.minCharacters = 0;
         options.maxLocations = 5;
         options.searchDelay = 100;
@@ -1444,6 +1484,7 @@ function createSearchTool() {
         configOptions.helperServices.geocode.push({
             name: "Custom",
             outFields: "*",
+            url: configOptions.placefinder.url,
             singleLineFieldName: configOptions.placefinder.singleLineFieldName
         });
     }
@@ -1479,7 +1520,6 @@ function createSearchTool() {
 
 
 }
-
 function checkResults(geocodeResults) {
     allResults = null;
     if (geocodeResults && geocodeResults.results && geocodeResults.results.results) {
@@ -1544,7 +1584,7 @@ function setupInfoWindowAndZoom(content, geocodeLocation, newExtent, geocodeResu
 
         content += "</span>";
         content += "<div id='geocodeWantOtherResults'>";
-        content += "<A href='JavaScript:showOtherResults()'>";
+        content += "<A onClick='showOtherResults();' href='#'>";
 
         content += i18n.tools.search.notWhatYouWanted;
         content += "</A>";
@@ -1556,7 +1596,7 @@ function setupInfoWindowAndZoom(content, geocodeLocation, newExtent, geocodeResu
             if (i !== pos) {
                 var result = allResults[i];
                 attr = result.feature.attributes;
-                content += "<A href='JavaScript:selectAnotherResult(" + i + ")'>";
+                content += "<A href='#' onClick='selectAnotherResult(" + i + ")'>";
                 if (!attr.Match_addr) {
                     content += result.name;
                 } else {
@@ -1589,9 +1629,9 @@ function setupInfoWindowAndZoom(content, geocodeLocation, newExtent, geocodeResu
     });
 
     var location = new esri.geometry.Point(geocodeLocation.x, geocodeLocation.y, geocodeLocation.spatialReference);
-    var handler = dojo.connect(map, "onExtentChange", function () {
+    var extentHandler = dojo.connect(map, "onExtentChange", function () {
         map.infoWindow.show(location);
-        dojo.disconnect(handler);
+        dojo.disconnect(extentHandler);
     });
 
     map.setExtent(newExtent);
@@ -1637,7 +1677,7 @@ function addTimeSlider(timeProperties) {
         innerHTML: esri.substitute({
             close_title: i18n.panel.close.title,
             close_alt: i18n.panel.close.label
-        }, '<a alt=${close_alt} title=${close_title} href="JavaScript:toggleTime(null);"><img  src="images/close.png"/></a>')
+        }, '<a alt=${close_alt} title=${close_title} href="#" onClick="toggleTime(null);"><img  src="images/close.png"/></a>')
     }, titlePane);
 
 
@@ -1771,6 +1811,7 @@ function toggleTime(timeProperties) {
     if (dojo.byId('timeFloater').style.visibility === 'hidden') {
         //create and display the time slider 
         createTimeSlider(timeProperties);
+        dojo.style(dojo.byId("timeFloater"),"top", "0");
         dijit.byId('timeFloater').show();
         dijit.byId('mainWindow').resize();
         resizeMap();
@@ -1829,57 +1870,107 @@ function createTimeSlider(timeProperties) {
         timeSlider.setThumbIndexes([0, 1]);
     }
 
-    dojo.connect(timeSlider, 'onTimeExtentChange', function (timeExtent) {
-        //update the time details span.
-        var timeString, datePattern;
-        if (timeProperties.timeStopInterval !== undefined) {
-            switch (timeProperties.timeStopInterval.units) {
-            case 'esriTimeUnitsCenturies':
-                datePattern = i18n.tools.time.centuryPattern; // 'yyyy G'
-                break;
-            case 'esriTimeUnitsDecades':
-                datePattern = i18n.tools.time.decadePattern; //'yyyy'
-                break;
-            case 'esriTimeUnitsYears':
-                datePattern = i18n.tools.time.yearPattern; //'MMMM yyyy'
-                break;
-            case 'esriTimeUnitsWeeks':
-                datePattern = i18n.tools.time.weekPattern; //'MMMM d, yyyy'
-                break;
-            case 'esriTimeUnitsDays':
-                datePattern = i18n.tools.time.weekPattern; //'MMMM d, yyyy'
-                break;
-            case 'esriTimeUnitsHours':
-                datePattern = i18n.tools.time.hourTimePattern; //'h:m:s.SSS a'
-                break;
-            case 'esriTimeUnitsMilliseconds':
-                datePattern = i18n.tools.time.millisecondTimePattern; //'h:m:s.SSS a'
-                break;
-            case 'esriTimeUnitsMinutes':
-                datePattern = i18n.tools.time.minuteTimePattern; //'h:m:s.SSS a'
-                break;
-            case 'esriTimeUnitsMonths':
-                datePattern = i18n.tools.time.monthPattern; //'MMMM d, y'
-                break;
-            case 'esriTimeUnitsSeconds':
-                datePattern = i18n.tools.time.secondTimePattern; //'h:m:s.SSS a'
-                break;
-            }
-            var startTime = formatDate(timeExtent.startTime, datePattern);
-            var endTime = formatDate(timeExtent.endTime, datePattern);
-            timeString = esri.substitute({
-                "start_time": startTime,
-                "end_time": endTime
-            }, i18n.tools.time.timeRange);
-        } else {
-            timeString = esri.substitute({
-                "time": formatDate(timeExtent.endTime, datePattern)
-            }, i18n.tools.time.timeRangeSingle);
-
-        }
-        dojo.byId('timeSliderLabel').innerHTML = timeString;
-    });
+    dojo.connect(timeSlider,"onTimeExtentChange",updateTimeSliderTitle);
     timeSlider.startup();
+
+}
+function updateTimeSliderTitle(timeExtent) {
+    var slider = this;
+    var start = null,
+        end = null;
+
+    if (!timeExtent) {
+        // startup
+        if (slider.thumbCount == 2) {
+            start = slider.timeStops[0];
+            end = slider.timeStops[1];
+        } else {
+            start = slider.timeStops[0];
+        }
+    } else {
+        start = timeExtent.startTime;
+        if ((timeExtent.endTime.getTime() - timeExtent.startTime.getTime()) > 0) {
+            end = timeExtent.endTime;
+        }
+    }
+
+    var startDatePattern = null;
+    var endDatePattern = null;
+    var startTimePattern = null;
+    var endTimePattern = null;
+    if (end && start.getFullYear() == end.getFullYear()) {
+        if (start.getMonth() == end.getMonth()) {
+            if (start.getDate() == end.getDate()) {
+                if (start.getHours() == end.getHours()) {
+                    if (start.getMinutes() == end.getMinutes()) {
+                        if (start.getSeconds() == end.getSeconds()) {
+                            // same second
+                            startDatePattern = i18n.tools.time.datePattern;
+                            startTimePattern = i18n.tools.time.millisecondTimePattern;
+                            endTimePattern = i18n.tools.time.millisecondTimePattern;
+                        } else { // same minute
+                            startDatePattern = i18n.tools.time.datePattern;
+                            startTimePattern = i18n.tools.time.secondTimePattern;
+                            endTimePattern = i18n.tools.time.secondTimePattern;
+                        }
+                    } else { // same hour
+                        startDatePattern = i18n.tools.time.datePattern;
+                        startTimePattern = i18n.tools.time.minuteTimePattern;
+                        endTimePattern = i18n.tools.time.minuteTimePattern;
+                    }
+                } else { // same day
+                    startDatePattern = i18n.tools.time.datePattern;
+                    startTimePattern = i18n.tools.time.hourTimePattern;
+                    endTimePattern = i18n.tools.time.hourTimePattern;
+                }
+            } else { // same month
+                if (end.getDate() - start.getDate() < 2) {
+                    // less than 2 days
+                    startDatePattern = i18n.tools.time.datePattern;
+                    startTimePattern = i18n.tools.time.hourTimePattern;
+                    endDatePattern = i18n.tools.time.datePattern;
+                    endTimePattern = i18n.tools.time.hourTimePattern;
+                } else {
+                    startDatePattern = i18n.tools.time.datePattern;
+                    endDatePattern = i18n.tools.time.datePattern;
+                }
+            }
+        } else { // same year
+            startDatePattern = i18n.tools.time.datePattern;
+            endDatePattern = i18n.tools.time.datePattern;
+        }
+    } else if (end && end.getFullYear() - start.getFullYear() > 2) {
+        startDatePattern = i18n.tools.time.yearPattern;
+        endDatePattern = i18n.tools.time.yearPattern;
+    } else {
+        startDatePattern = i18n.tools.time.datePattern;
+        endDatePattern = i18n.tools.time.datePattern;
+    }
+
+    var startTime = dojo.date.locale.format(start, {
+        datePattern: startDatePattern,
+        timePattern: startTimePattern,
+        selector: (startDatePattern && startTimePattern) ? null : (startDatePattern ? "date" : "time")
+    });
+    var endTime = null;
+    if (end) {
+        endTime = dojo.date.locale.format(end, {
+            datePattern: endDatePattern,
+            timePattern: endTimePattern,
+            selector: (endDatePattern && endTimePattern) ? null : (endDatePattern ? "date" : "time")
+        });
+    }
+
+    var info;
+    if (end) {
+        info = dojo.string.substitute(i18n.tools.time.timeRange, {
+            start_time: startTime,
+            end_time: endTime
+        });
+    } else {
+        info = "" + startTime;
+    }
+    dojo.byId("timeSliderLabel").innerHTML = info;
 
 }
 

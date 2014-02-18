@@ -55,20 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      centuryPattern: "yyyy G",
-      decadePattern: "yyyy", 
-      yearPattern: "MMMM yyyy",
-      weekPattern: "d. MMMM yyyy",
+      datePattern: "Ĳ_MMMM d, yyyy_ä",
+      yearPattern: "Ĳ_yyyy_ä",
       hourTimePattern: "H",
-      // e.g. for German: "H:mm:ss:SSS"
-      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "H:mm",
-      // e.g. for German: "H:mm"
-      monthPattern: "d MMMM y",
       secondTimePattern: "h:m:s.SSS a",
+      millisecondTimePattern:"h:m:ss.SSS a",
       title: "Tijdschuifregelaar weergeven",
       label: "Tijd",
-      timeRange: "<b>Tijdspanne:</b> ${start_time} tot ${end_time}",
+      timeRange: "Ĳ_${start_time} to ${end_time}_ä",
       timeRangeSingle: "<b>Tijdspanne:</b> ${time}"
     },
     editor: {

@@ -13,6 +13,29 @@ body {
   margin:0px;
   padding:0px;
 }
+
+.HomeButton .home{
+  position: absolute;
+  top: 120px;
+  left:20px;
+  z-index: 50;
+  background-color: #545454;
+}
+.LocateButton .zoomLocateButton {
+ position: absolute;
+ top:165px;
+ left:20px;
+ z-index: 50;
+ background-color: #545454;
+}
+.HomeButton .home:hover{
+ background-color: #CEE1EC;  
+}
+.LocateButton .zoomLocateButton:hover {
+ background-color: #CEE1EC;
+}
+
+
 .notembed{
   height:98%;
   width:98%;
@@ -512,6 +535,20 @@ background-image:none !important;
 .esriBookmarkItem:hover{
   background-color:#CEE1EC;
 }
+
+.esriTemplatePicker .tooltip{
+    display:none;
+}
+
+.esriDrawingToolbar{
+    position:absolute;
+    top:0px;
+    right:0px;
+    left:0px;
+    border:none !important;
+    margin-bottom:40px;
+
+}
 #bookmarkView{
   width: 100%;
   max-height: 448px;
@@ -526,7 +563,10 @@ background-image:none !important;
   clear:both;
   display:block;
 }
-
+.toolbar.templatePicker{
+    position: absolute;
+    top:20px;
+}
 .templatePicker {
   border:none;
   padding: 0;
@@ -561,5 +601,4 @@ background-image:none !important;
 
 .customMenuPopup{
   overflow-y:auto !important;
-  height:70% !important;
 }

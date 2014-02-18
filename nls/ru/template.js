@@ -55,20 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      centuryPattern: "гггг G",
-      decadePattern: "yyyy", 
-      yearPattern: "ММММ гггг",
-      weekPattern: "dd MMMM yyyy \'г.\'",
+      datePattern: "Ж_MMMM d, yyyy_Я",
+      yearPattern: "Ж_yyyy_Я",
       hourTimePattern: "H",
-      // e.g. for German: "Ч:мм:сс:ССС"
-      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "H:mm",
-      // e.g. for German: "Ч:мм"
-      monthPattern: "ММММ ч, г",
       secondTimePattern: "ч:м:с.ССС a",
+      millisecondTimePattern:"h:m:ss.SSS a",
       title: "Показать бегунок времени",
       label: "Время",
-      timeRange: "<b>Временной диапазон:</b> ${start_time} to ${end_time}",
+      timeRange: "Ж_${start_time} to ${end_time}_Я",
       timeRangeSingle: "<b>Временной диапазон:</b> ${time}"
     },
     editor: {

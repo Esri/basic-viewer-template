@@ -3,7 +3,7 @@ define(
 function() {
   var config = {
     bingMapsKey:"",   
-    units: "english",
+    units: null,
     helperServices: {
        geometry:{
         url: location.protocol + "//utility.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"

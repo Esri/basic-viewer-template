@@ -6,6 +6,18 @@ body {
 #leftPane {
   background-color:#e9eef2;
 }
+.HomeButton .home{
+  background-color: #6788A2;
+}
+.LocateButton .zoomLocateButton {
+ background-color: #6788A2;
+}
+.HomeButton .home:hover{
+ background-color: #CEE1EC;  
+}
+.LocateButton .zoomLocateButton:hover {
+ background-color: #CEE1EC;
+}
 /*override claro background and other props*/
 #toolbarContainer_bv .dijitToolbar {
   background:url(../images/blue/toolbar_bg.png) repeat-x #6788a2;
@@ -26,8 +38,10 @@ body {
   border-style:none;
 }
 
-.esriPopup .pointer, .esriPopup .outerPointer {
-    background: url("../images/blue/popup_b.png") no-repeat scroll 0 0 transparent;
+.esriPopup .pointer.topRight, esriPopup .pointer.topLeft, .esriPopup .pointer.top {
+    background: url("../images/blue/popup_b.png") no-repeat 0 -617px;
+    width:24px;
+    height:14px;
 }
 
 /*Attribute Inspector button styling (delete buttons)*/

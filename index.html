@@ -57,7 +57,7 @@
         //The ID for the map from ArcGIS.com
         webmap: "f5b13dbed07c46cdb783cf361833aa6b",
         //Modify this to point to your sharing service URL if you are using the portal
-        sharingurl: "http://www.arcgis.com",//for example: "http://www.arcgis.com",
+        sharingurl: null,//for example: "http://www.arcgis.com",
         //The id for the web mapping application item that contains configuration info - in most
         ////When editing you need to specify a proxyurl (see below) if the service is on a different domain
         //Specify a proxy url if you will be editing, using the elevation profile or have secure services or web maps that are not shared with everyone.
@@ -90,9 +90,13 @@
         displaytimeslider: true,
         displayprint: true,
         displayprintlegend: false,
+        displayeditortoolbar: false,
+        displaymapwidgets:true,
         //i18n.viewer.main.scaleBarUnits,
         //The elevation tool uses the  measurement tool to draw the lines. So if this is set
-        //to true then displaymeasure needs to be true too.
+        //to true then displaymeasure needs to be true too. NOTE: THis tool is deprecated and should no 
+        //longer be used in the Basic Viewer. Use the new version of the template instead
+        //https://github.com/Esri/elevation-profile-template
         displayelevation: false,
         //This option is used when the elevation chart is displayed to control what is displayed when users mouse over or touch the chart. When true, elevation gain/loss will be shown from the first location to the location under the cursor/finger.
         showelevationdifference: false,
@@ -139,7 +143,7 @@
           "countryCode":"",
           "currentExtent":false,
           "placeholder": "",
-          "singlelinefieldname":""
+          "singleLineFieldName":""
         },
         //when true locations searches use the current map extent. 
         searchextent: false,

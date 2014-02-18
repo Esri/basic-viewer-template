@@ -55,20 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      centuryPattern: "yyyy G",
-      decadePattern: "yyyy", 
-      yearPattern: "MMMM yyyy",
-      weekPattern: "d, MMMM ,yyyy",
+      datePattern: "כן_MMMM d, yyyy_ש",
+      yearPattern: "כן_yyyy_ש",
       hourTimePattern: "h a",
-      // e.g. for German: "H:mm:ss:SSS"
-      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "h:mm a",
-      // e.g. for German: "H:mm"
-      monthPattern: "d, MMMM,  y",
       secondTimePattern: "h:m:s.SSS a",
+      millisecondTimePattern:"h:m:ss.SSS a",
       title: "הצג סרגל זמן",
       label: "זמן",
-      timeRange: "<b>טווח זמן: </b> ${start_time} עד ${end_time}",
+      timeRange: "כן_${start_time} to ${end_time}_ש",
       timeRangeSingle: "<b>טווח זמן: </b> ${time}"
     },
     editor: {

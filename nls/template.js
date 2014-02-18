@@ -1,4 +1,4 @@
-﻿define({root:
+define({root:
 ({
   viewer:{
     main:{
@@ -55,20 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      centuryPattern: "yyyy G",
-      decadePattern: "yyyy", 
-      yearPattern: "MMMM yyyy",
-      weekPattern: "MMMM d, yyyy",
+      datePattern: "MMMM d, yyyy",
+      yearPattern: "yyyy",
       hourTimePattern: "h a",
-      // e.g. for German: "H:mm:ss:SSS"
-      millisecondTimePattern:"h:m:ss.SSS a",
       minuteTimePattern: "h:mm a",
-      // e.g. for German: "H:mm"
-      monthPattern: "MMMM d, y",
       secondTimePattern: "h:m:s.SSS a",
+      millisecondTimePattern:"h:m:ss.SSS a",
       title: "Display Time Slider",
       label: "Time",
-      timeRange: "<b>Time Range:</b> ${start_time} to ${end_time}",
+      timeRange: "${start_time} to ${end_time}",
       timeRangeSingle: "<b>Time Range:</b> ${time}"
     },
     editor: {
@@ -132,5 +127,7 @@
 "ro":1,
 "ru":1,
 "sv":1,
+"tr":1,
+"th":1,
 "zh-cn":1
 });
