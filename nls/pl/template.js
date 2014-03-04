@@ -55,15 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "ł_MMMM d, yyyy_ą",
-      yearPattern: "ł_yyyy_ą",
+      datePattern: "dd-MMMM-yyyy",
+      yearPattern: "yyyy",
       hourTimePattern: "hh",
       minuteTimePattern: "hh:mm",
       secondTimePattern: "hh:mm:ss",
       millisecondTimePattern:"h:m:ss.SSS a",
       title: "Suwak wyświetlania czasu",
       label: "Czas",
-      timeRange: "ł_${start_time} to ${end_time}_ą",
+      timeRange: "${start_time} do ${end_time}",
       timeRangeSingle: "<b>Okres:</b> ${time}"
     },
     editor: {

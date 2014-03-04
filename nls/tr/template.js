@@ -55,15 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "ı_MMMM d, yyyy_İ",
-      yearPattern: "ı_yyyy_İ",
+      datePattern: "d MMMM yyyy",
+      yearPattern: "yyyy",
       hourTimePattern: "h a",
       minuteTimePattern: "h:mm a",
       secondTimePattern: "h:m:s.SSS a",
       millisecondTimePattern:"h:m:ss.SSS a",
       title: "Zaman Kaydırıcısını Göster",
       label: "Zaman",
-      timeRange: "ı_${start_time} to ${end_time}_İ",
+      timeRange: "${start_time} - ${end_time}",
       timeRangeSingle: "<b>Saat Aralığı:</b> ${time}"
     },
     editor: {

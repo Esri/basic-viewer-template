@@ -55,15 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "한_MMMM d, yyyy_빠",
-      yearPattern: "한_yyyy_빠",
+      datePattern: "yyyy MMMM d",
+      yearPattern: "yyyy",
       hourTimePattern: "a h",
       minuteTimePattern: "a h:mm",
       secondTimePattern: "h:m:s.SSS a",
       millisecondTimePattern:"h:m:ss.SSS a",
       title: "시간 슬라이더 표시",
       label: "시간",
-      timeRange: "한_${start_time} to ${end_time}_빠",
+      timeRange: "${start_time} ~ ${end_time}",
       timeRangeSingle: "<b>시간 범위:</b> ${time}"
     },
     editor: {

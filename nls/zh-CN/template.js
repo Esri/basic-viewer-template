@@ -55,15 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "试_MMMM d, yyyy_验",
-      yearPattern: "试_yyyy_验",
+      datePattern: "MMMM d, yyyy",
+      yearPattern: "yyyy",
       hourTimePattern: "H",
       minuteTimePattern: "H:mm",
       secondTimePattern: "h:m:s.SSS a",
       millisecondTimePattern:"h:m:ss.SSS a",
       title: "显示时间滑块",
       label: "时间",
-      timeRange: "试_${start_time} to ${end_time}_验",
+      timeRange: "${start_time} 至 ${end_time}",
       timeRangeSingle: "<b>时间范围:</b> ${time}"
     },
     editor: {

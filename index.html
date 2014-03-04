@@ -3,12 +3,12 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
-    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.8/js/dojo/dijit/themes/claro/document.css">
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.9/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.9/js/dojo/dijit/themes/claro/document.css">
 
-    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.8/js/dojo/dojox/layout/resources/FloatingPane.css">
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.9/js/dojo/dojox/layout/resources/FloatingPane.css">
 
-    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.8/js/esri/css/esri.css" />
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.9/js/esri/css/esri.css" />
 
     <link rel="stylesheet" type="text/css" href="css/layout.css">
     <!--[if IE]>
@@ -33,17 +33,18 @@
       }]
     };
     </script>
-    <script type="text/javascript" src="//js.arcgis.com/3.8/">
+    <script type="text/javascript" src="//js.arcgis.com/3.9/">
 
     </script>
     <script type="text/javascript">
       dojo.require("esri.layout");
     </script>
-
+ 
     <script type="text/javascript" src="javascript/layout.js">
     </script>
     <script type="text/javascript">
       dojo.require("utilities.App");
+      dojo.require("dojo.on");
       dojo.require("templateConfig.commonConfig");
  
 
@@ -57,7 +58,7 @@
         //The ID for the map from ArcGIS.com
         webmap: "f5b13dbed07c46cdb783cf361833aa6b",
         //Modify this to point to your sharing service URL if you are using the portal
-        sharingurl: null,//for example: "http://www.arcgis.com",
+        sharingurl: document.location.protocol + "//www.arcgis.com",//for example: "http://www.arcgis.com",
         //The id for the web mapping application item that contains configuration info - in most
         ////When editing you need to specify a proxyurl (see below) if the service is on a different domain
         //Specify a proxy url if you will be editing, using the elevation profile or have secure services or web maps that are not shared with everyone.
@@ -173,10 +174,11 @@
         //embed = true means the margins will be collapsed to just include the map no title or links
         embed: false
       };
+        var supportsLocalization = true;
+        var app = new utilities.App(defaults, supportsLocalization);
+        dojo.on(app, "ready", function(config){
 
-        var app = new utilities.App(defaults);
-        app.init().then(function(options){
-            initMap(options);
+          initMap(config);
         });
 
       });

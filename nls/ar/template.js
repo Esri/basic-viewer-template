@@ -55,15 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "بيت_MMMM d, yyyy_لاحقة",
-      yearPattern: "بيت_yyyy_لاحقة",
+      datePattern: "dd MMMM, yyyy",
+      yearPattern: "yyyy",
       hourTimePattern: "h a",
       minuteTimePattern: "h:mm a",
       secondTimePattern: "h:m:s.SSS a",
       millisecondTimePattern:"h:m:ss.SSS a",
       title: "عرض شريط تمرير الوقت",
       label: "الوقت",
-      timeRange: "بيت_${start_time} to ${end_time}_لاحقة",
+      timeRange: "${start_time} إلى ${end_time}",
       timeRangeSingle: "<b> نطاق الوقت: </b> ${time}"
     },
     editor: {

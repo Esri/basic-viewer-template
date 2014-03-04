@@ -12,7 +12,7 @@
   },
   tools:{
     basemap: {
-    title: "Pakeisti pagrindo žėmėlapį",
+    title: "Pakeisti pagrindo žemėlapį",
     label: "Pagrindo žemėlapis"
     },
     print: {
@@ -55,15 +55,15 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "Į_MMMM d, yyyy_š",
-      yearPattern: "Į_yyyy_š",
+      datePattern: "yyyy MMMM dd",
+      yearPattern: "yyyy",
       hourTimePattern: "H a",
       minuteTimePattern: "HH:mm",
       secondTimePattern: "hh:m:s.SSS",
       millisecondTimePattern:"h:m:ss.SSS a",
       title: "Rodyti laiko šliaužiklį",
       label: "Laikas",
-      timeRange: "Į_${start_time} to ${end_time}_š",
+      timeRange: "Nuo ${start_time} iki ${end_time}",
       timeRangeSingle: "<b>Laiko intervalas:</b> ${time}"
     },
     editor: {

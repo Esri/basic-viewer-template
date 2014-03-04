@@ -1,6 +1,7 @@
 dojo.require("esri.widgets");
 dojo.require("esri.arcgis.utils");
 dojo.require("dojox.layout.FloatingPane");
+dojo.require("dojo.dnd.move");
 dojo.require("utilities.custommenu");
 dojo.require("esri.dijit.HomeButton");
 dojo.require("esri.dijit.LocateButton");
@@ -15,13 +16,15 @@ var configOptions;
 var allResults = null;
 
 var measure;
+var ConstrainedFloatingPane;
 
 function initMap(options) {
-    /*Patch to fix issue with floating panes used to display the measure and time panel. They
-       moved slightly each time the window was toggled due to this bug
-       http://bugs.dojotoolkit.org/ticket/5849
-       */
-    dojox.layout.FloatingPane.prototype.show = function (callback) {
+/*Patch to fix issue with floating panes used to display the measure and time panel. They
+   moved slightly each time the window was toggled due to this bug
+   http://bugs.dojotoolkit.org/ticket/5849
+   */
+
+dojox.layout.FloatingPane.prototype.show = function (callback) {
         var anim = dojo.fadeIn({
             node: this.domNode,
             duration: this.duration,
@@ -43,6 +46,36 @@ function initMap(options) {
         }).play();
         this.resize(dojo.coords(this.domNode));
     };
+/*Extend the floating pane for the measure and time slider to constrain within the parent widget*/
+    ConstrainedFloatingPane = dojo.declare(dojox.layout.FloatingPane, {
+    
+        postCreate: function() {
+            this.inherited(arguments);
+            this.moveable = new dojo.dnd.move.constrainedMoveable(
+                this.domNode, {
+                    handle: this.focusNode,
+                    constraints: function() {
+                        var coordsBody = dojo.coords(dojo.body());
+                        // or
+                        var coordsWindow = {
+                            l: 0,
+                            t: 0,
+                            w: window.innerWidth,
+                            h: window.innerHeight                            
+                        };
+                        
+                        return coordsWindow;
+                    },
+                    within: true
+                }
+            );                            
+        }
+        
+    });
+
+      //fix for dojox/mobile bug https://bugs.dojotoolkit.org/ticket/17228
+     document.dojoClick = false;
+
 
 
 
@@ -140,6 +173,7 @@ function createApp() {
         configOptions.displaySlider = false;
     }
 
+    var itemInfo = configOptions.itemInfo || configOptions.webmap;
 
     if (configOptions.gcsextent) {
         //make sure the extent is valid minx,miny,maxx,maxy
@@ -152,17 +186,15 @@ function createApp() {
                 getItem(configOptions.webmap);
             } else {
                 if (extArray.length == 4) {
-                    getItem(configOptions.webmap, extArray);
+                    getItem(itemInfo, extArray);
                 } else {
-                    createMap(configOptions.webmap);
+                    createMap(itemInfo);
                 }
             }
         }
-    }else if (configOptions.appid && configOptions.appextent.length > 0) {
-        var extent = [configOptions.appextent[0][0],configOptions.appextent[0][1], configOptions.appextent[1][0], configOptions.appextent[1][1]];
-        getItem(configOptions.webmap, extent);
-    } else {
-        createMap(configOptions.webmap);
+    }else{
+        createMap(itemInfo);
+
     }
 }
 
@@ -424,7 +456,15 @@ function initUI(response) {
 
     //do we have any editable layers - if not then set editable to false
     editLayers = hasEditableLayers(layers);
-    if (editLayers.length === 0) {
+    
+    //is the logged-in user allowed to edit? 
+    var editable = true;
+    if(esri.isDefined(configOptions.userPrivileges)){
+        if(dojo.indexOf(configOptions.userPrivileges, "features:user:edit") === -1){
+            editable = false;
+        }
+    }
+    if (editLayers.length === 0 || !editable) {
         configOptions.displayeditor = false;
     }
 
@@ -1027,25 +1067,26 @@ function updatePrint(templates) {
 
 
 function addMeasurementWidget() {
-    var fp = new dojox.layout.FloatingPane({
+    
+
+
+
+    var fp = new ConstrainedFloatingPane({
         title: i18n.tools.measure.title,
         resizable: false,
         dockable: false,
-        closable: false,
-        style: "position:absolute;top:0;left:50px;width:245px;height:175px;z-index:100;visibility:hidden;",
-        id: 'floater'
-    }, dojo.byId('floater'));
+        closable:false,
+        id: "floater",
+        //constrainToContainer: true,
+        style: "position:absolute;top:0;left:0;width:245px;height:175px;z-index:999!important;visibility:hidden;"    
+    }, dojo.byId("floater"));
+
     fp.startup();
 
-    var titlePane = dojo.query('#floater .dojoxFloatingPaneTitle')[0];
-    //add close button to title pane
-    var closeDiv = dojo.create('div', {
-        id: "closeBtn",
-        innerHTML: esri.substitute({
-            close_title: i18n.panel.close.title,
-            close_alt: i18n.panel.close.label
-        }, '<a alt=${close_alt} title=${close_title} href="#" onClick="toggleMeasure();"><img  src="images/close.png"/></a>')
-    }, titlePane);
+   
+
+ fp.startup();
+
 
     measure = new esri.dijit.Measurement({
         map: map,
@@ -1197,17 +1238,9 @@ function hasEditableLayers(layers) {
             var eLayer = layer.layerObject;
 
             if (eLayer instanceof esri.layers.FeatureLayer && eLayer.isEditable()) {
-                if (eLayer.capabilities && eLayer.capabilities === "Query") {
-                    //is capabilities set to Query if so then editing was disabled in the web map so 
-                    //we won't add to editable layers.
-                } else {
                     layerInfos.push({
                         'featureLayer': eLayer
                     });
-                }
-
-
-
             }
 
         }
@@ -1251,7 +1284,7 @@ function addEditor(editLayers) {
 
     //add this to the existing div
     dijit.byId('stackContainer').addChild(editCp);
-    navigateStack('editPanel');
+   // navigateStack('editPanel');
     //create the editor if the legend and details panels are hidden - otherwise the editor
     //will be created when the edit button is clicked.
     if ((configOptions.displaydetails === false) && (configOptions.displaylegend === false)) {
@@ -1658,28 +1691,27 @@ function selectAnotherResult(pos) {
 function addTimeSlider(timeProperties) {
     esri.show(dojo.byId('timeFloater'));
     //add time button and create floating panel
-    var fp = new dojox.layout.FloatingPane({
+    var fp = new ConstrainedFloatingPane({
         title: i18n.tools.time.title,
         resizable: false,
         dockable: false,
         closable: false,
-        style: "position:absolute;top:30px;left:0;width:70%;height:150px;z-index:100;visibility:hidden;",
+        style: "position:absolute;top:30px;left:60px;width:70%;height:150px;z-index:100;visibility:hidden;",
         id: 'timeFloater'
     }, dojo.byId('timeFloater'));
     fp.startup();
 
 
 
-    //add close button to title pane
-    var titlePane = dojo.query('#timeFloater .dojoxFloatingPaneTitle')[0];
+    //add close button to title pane - time panel can be toggled using the button so close not necessary?
+   /* var titlePane = dojo.query('#timeFloater .dojoxFloatingPaneTitle')[0];
     var closeDiv = dojo.create('div', {
         id: "closeBtn",
         innerHTML: esri.substitute({
             close_title: i18n.panel.close.title,
             close_alt: i18n.panel.close.label
         }, '<a alt=${close_alt} title=${close_title} href="#" onClick="toggleTime(null);"><img  src="images/close.png"/></a>')
-    }, titlePane);
-
+    }, titlePane);*/
 
     //add a button to the toolbar to toggle the time display 
     var toggleButton = new dijit.form.ToggleButton({
