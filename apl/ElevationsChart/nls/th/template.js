@@ -3,8 +3,8 @@
   display: {
     elevationProfileTitle: "ภาพตัดขวางความสูง",
     showMe: "แสดง",
-    selectLine: "เลือกฟีทเจอร์บนแผนที่",
-    popupRequirement: "หมายเหตุ: ฟีทเจอร์จะต้องอยู่ภายในชั้นข้อมูลเฉพาะหรือเป็นส่วนหนึ่งของแมพเซอร์วิสที่มีหน้าต่างป็อปอัพ",
+    selectLine: "เลือกฟีเจอร์บนแผนที่",
+    popupRequirement: "หมายเหตุ: ฟีเจอร์จะต้องอยู่ภายในชั้นข้อมูลเฉพาะหรือเป็นส่วนหนึ่งของแมพเซอร์วิสที่มีหน้าต่างป็อปอัพ",
     digitizeDistanceMeasureTool: "ใช้ปุ่ม <b>วัดความยาว</b>",
     selectFeatureHelpUrl: "http://help.arcgis.com/th/arcgisonline/help/index.html#//010q0000004s000000#ESRI_SECTION1_DAA22E89DF67448E8F3682309F39BE5D",
     measureToolHelpUrl: "http://help.arcgis.com/th/arcgisonline/help/index.html#//010q00000096000000",

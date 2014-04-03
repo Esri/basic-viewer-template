@@ -175,27 +175,27 @@ function createApp() {
 
     var itemInfo = configOptions.itemInfo || configOptions.webmap;
 
-    if (configOptions.gcsextent) {
+    if (configOptions.gcsextent ) {
+
         //make sure the extent is valid minx,miny,maxx,maxy
         var extent = configOptions.gcsextent;
         if (extent) {
-            var extArray = extent.split(",");
-            if (dojo.some(extArray, function (value) {
-                return isNaN(value);
-            })) {
-                getItem(configOptions.webmap);
-            } else {
-                if (extArray.length == 4) {
-                    getItem(itemInfo, extArray);
-                } else {
-                    createMap(itemInfo);
-                }
-            }
-        }
-    }else{
-        createMap(itemInfo);
 
+            var extArray = decodeURIComponent(extent).split(",");
+        
+            if(extArray.length === 4){
+
+                getItem(configOptions.webmap, extArray);
+            }else{
+                createMap(configOptions.webmap);
+            }
+
+        }
+    } else {
+        createMap(configOptions.webmap);
     }
+
+
 }
 
 function getItem(item, extArray) {

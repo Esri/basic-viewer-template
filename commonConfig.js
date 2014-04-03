@@ -18,7 +18,7 @@ function() {
         url: location.protocol + "//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
        }]
     },
-    queryForOrg: true
+    queryForOrg: false
 };
   
   // could use a has() test to optionally populate some global
