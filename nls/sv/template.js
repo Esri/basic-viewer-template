@@ -1,4 +1,4 @@
-﻿define(
+define(
 ({
   viewer:{
     main:{
@@ -37,7 +37,7 @@
       },
       email:{
         label: "E-post",
-        message: "Checka ut den här kartan"
+        message: "Titta på den här kartan"
       }    
     }
     },
