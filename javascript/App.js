@@ -351,7 +351,7 @@ define([
                 var paramItems = ['theme','displayslider','displaymeasure','displaybasemaps','displayoverviewmap',
                 'displayeditor','displaylegend','displaysearch','displaylayerlist','displaybookmarks','displaydetails',
                 'displaytimeslider','displayprint','displayprintlegend','displayeditortoolbar','displaymapwidgets','displayelevation',
-                'displayscalebar','displayshare','leftpanelvisible','embed','constrainmapextent','searchextent','basemapgrouptitle','basemapgroupowner','gcsextent'];
+                'displayscalebar','displayshare','leftpanelvisible','embed','constrainmapextent','searchextent','basemapgrouptitle','basemapgroupowner','gcsextent','home'];
                 var mixinParams = this._createUrlParamsObject(paramItems);
                 lang.mixin(this.config, mixinParams);
             }

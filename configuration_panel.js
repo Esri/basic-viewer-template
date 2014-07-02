@@ -53,12 +53,7 @@
         }]
     }, {
         "category": "<b>Menu Items</b>",
-        "fields": [{
-            "type": "boolean",
-            "fieldName": "displaymapwidgets",
-            "label": "Optional widgets",
-            "tooltip": "Display the home and locate button"
-        }, {
+        "fields": [ {
             "type": "boolean",
             "fieldName": "displaylegend",
             "label": "Legend *",
@@ -127,7 +122,25 @@
             "type": "paragraph",
             "value": "* These menu items will appear in the application when the web map has layers that require them."
         }]
-    }, {
+    },  {
+         "category":"<b>Map Widgets</b>",
+         "fields":[
+            {
+               "type":"paragraph",
+               "value":"Add one or more of the following widgets to the map."
+            },
+            {
+               "type":"boolean",
+               "fieldName":"home",
+               "label":"Full extent button"
+            },
+            {
+               "type":"boolean",
+               "fieldName":"locate",
+               "label":"Location button"
+            }
+         ]
+      },{
         "category": "<b>Print Settings</b>",
         "fields": [{
             "type": "boolean",
@@ -165,7 +178,8 @@
         "displaydetails": true,
         "displaylayerlist": true,
         "displaybasemaps": true,
-        "displaymapwidgets": true,
+        "home": true,
+        "locate": true,
         "printlayout": false
     }
 }

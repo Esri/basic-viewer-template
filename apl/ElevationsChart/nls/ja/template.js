@@ -4,7 +4,7 @@
     elevationProfileTitle: "標高グラフ",
     showMe: "表示",
     selectLine: "マップ内のフィーチャを選択します。",
-    popupRequirement: "注意: フィーチャはフィーチャ レイヤ内にあるか、ポップアップが有効なマップ サービスの一部である必要があります。",
+    popupRequirement: "注意: フィーチャはフィーチャ サービス内にあるか、ポップアップが有効なマップ サービスの一部である必要があります。",
     digitizeDistanceMeasureTool: "<b>計測</b>ボタンを使用します。",
     selectFeatureHelpUrl: "http://help.arcgis.com/ja/arcgisonline/help/index.html#//010q0000004s000000#ESRI_SECTION1_DAA22E89DF67448E8F3682309F39BE5D",
     measureToolHelpUrl: "http://help.arcgis.com/ja/arcgisonline/help/index.html#//010q00000096000000",

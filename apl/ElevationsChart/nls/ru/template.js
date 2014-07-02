@@ -10,7 +10,7 @@
     measureToolHelpUrl: "http://help.arcgis.com/ru/arcgisonline/help/index.html#//010q00000096000000",
     hoverOver: "Задержать над ",
     touchIPad: "сенсорный iPad",
-    locationOnMap: "график профиля высот для отображения высот и местоположений на карте."
+    locationOnMap: "график профиля рельефа для отображения высот и местоположений на карте."
   },
   // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //
   locationResultTemplate: "Высота: {0} метров",

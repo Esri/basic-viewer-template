@@ -17,9 +17,9 @@
   chart: {
     title: "פרופיל גבהים",
     // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //
-    elevationTitleTemplate: "גובה ב {0}",
+    elevationTitleTemplate: "גובה ב{0}",
     // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //
-    distanceTitleTemplate: "מרחק ב {0}",
+    distanceTitleTemplate: "מרחק ב{0}",
     // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //
     gainLossTemplate: "מינימום:{min}   מקסימום:{max}   התחלה:{start}   סוף:{end}   שינוי:{gainloss}"
   },

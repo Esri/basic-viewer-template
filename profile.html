@@ -29,7 +29,7 @@
         location: path_location + '/apl'
       },{
         name: "templateConfig",
-        location: path_location
+        location: path_location.substr(0,path_location.lastIndexOf('/OnePane')) 
       }]
     };
     </script>
@@ -52,18 +52,17 @@
       var i18n;
       dojo.ready(function(){
 
-
         i18n = dojo.i18n.getLocalization("esriTemplate","template");
-        var  defaults = {
-        //The ID for the map from ArcGIS.com
+        var  defaults = {  
+        //The ID for the map from ArcGIS.com     
         webmap: "f5b13dbed07c46cdb783cf361833aa6b",
         //Modify this to point to your sharing service URL if you are using the portal
-        sharingurl: "http://www.arcgis.com",//for example: "http://www.arcgis.com",
+        sharingurl: "null",//for example: "http://www.arcgis.com",
         //The id for the web mapping application item that contains configuration info - in most
         ////When editing you need to specify a proxyurl (see below) if the service is on a different domain
         //Specify a proxy url if you will be editing, using the elevation profile or have secure services or web maps that are not shared with everyone.
-        proxyurl: "",
-        //cases this will be null.
+        proxyurl: null,
+        //cases this will be null. 
         appid: "",
         //set to true to display the title
         displaytitle: true,
@@ -77,48 +76,42 @@
         //Specify a color theme for the app. Valid options are gray,blue,purple,green and orange
         theme: 'gray',
         //Optional tools - set to false to hide the tool
-        //set to false to hide the zoom slider on the map
-        displayslider: true,
+        //set to false to hide the zoom slider on the map 
+        displayslider: false,
         displaymeasure: true,
         displaybasemaps: true,
-        displayoverviewmap: true,
-        displayeditor: true,
+        displayoverviewmap: false,
+        displayeditor: false,
         displaylegend: true,
         displaysearch: true,
-        displaylayerlist: true,
+        displaylayerlist: false,
         displaybookmarks: true,
-        displaydetails: true,
-        displaytimeslider: true,
-        displayprint: true,
+        displaydetails: false,
+        displaytimeslider: false,
+        displayprint: false,
         displayprintlegend: false,
         displayeditortoolbar: false,
-        displaymapwidgets:false, //deprecated. After the June 2014 release set displayHome and displayLocate instead
-        home: true,
-        locate: true,
+        displaymapwidgets:true,
         //i18n.viewer.main.scaleBarUnits,
         //The elevation tool uses the  measurement tool to draw the lines. So if this is set
-        //to true then displaymeasure needs to be true too. NOTE: THis tool is deprecated and should no 
-        //longer be used in the Basic Viewer. Use the new version of the template instead
-        //https://github.com/Esri/elevation-profile-template
-        displayelevation: false,
-        //This option is used when the elevation chart is displayed to control what is displayed when users mouse over or touch the chart. When true, elevation gain/loss will be shown from the first location to the location under the cursor/finger.
-        showelevationdifference: false,
+        //to true then displaymeasure needs to be true too. 
+        displayelevation: true,
+        //This option is used when the elevation chart is displayed to control what is displayed when users mouse over or touch the chart. When true, elevation gain/loss will be shown from the first location to the location under the cursor/finger. 
+        showelevationdifference: true,
         displayscalebar: true,
-        displayshare: true,
-        //Set to true to display the left panel on startup. The left panel can contain the legend, details and editor. Set to true to
+        displayshare: false,
+        //Set to true to display the left panel on startup. The left panel can contain the legend, details and editor. Set to true to 
         //hide left panel on initial startup. 2
         leftPanelVisibility: true,
         //If the webmap uses Bing Maps data, you will need to provide your Bing Maps Key
         bingmapskey: commonConfig.bingMapsKey,
-        //Get the default map units
-        units: commonConfig.units, 
         //specify a group in ArcGIS.com that contains the basemaps to display in the basemap gallery
         //example: title:'ArcGIS Online Basemaps' , owner:esri
         basemapgroup: {
           title: null,
           owner: null
         },
-        //Enter the URL's to the geometry service, print task and geocode service. 
+        //Enter the URL to a Geometry Service 
         helperServices: commonConfig.helperServices,
         //Set the label in the nls file for your browsers language
         printlayouts: [{
@@ -140,7 +133,7 @@
         }],
         printlayout: false,
         printformat: "PNG32",
-        //Specify the geocoder options. By default uses the geocoder widget with the default locators. If you specify a url value then that locator will be used.
+        //Specify the geocoder options. By default uses the geocoder widget with the default locators. If you specify a url value then that locator will be used. 
         placefinder: {
           "url": "",
           "countryCode":"",
@@ -151,7 +144,7 @@
         //when true locations searches use the current map extent. 
         searchextent: false,
         //Set link text and url parameters if you want to display clickable links in the upper right-corner
-        //of the application.
+        //of the application. 
         //ArcGIS.com. Enter link values for the link1 and link2 and text to add links. For example
         //url:'http://www.esri.com',text:'Esri'
         link1: {
@@ -167,7 +160,7 @@
         //Restrict the map's extent to the initial extent of the web map. When true users
         //will not be able to pan/zoom outside the initial extent.
         constrainmapextent: false,
-        //Provide an image and url for a logo that will be displayed as a clickable image
+        //Provide an image and url for a logo that will be displayed as a clickable image 
         //in the lower right corner of the map. If nothing is specified then the esri logo will appear.
         customlogo: {
           image: '',

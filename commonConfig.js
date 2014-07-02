@@ -2,7 +2,7 @@ define(
 [],
 function() {
   var config = {
-    bingMapsKey:"",   
+    bingMapsKey:"Arrzu_Koi7htDRMIwm6kTe0Nqh8FvVdN17blcaJVTEhn87z-tIYJh2LgBNbJS4fv",   
     units: null,
     helperServices: {
        geometry:{
@@ -18,7 +18,7 @@ function() {
         url: location.protocol + "//geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
        }]
     },
-    queryForOrg: false
+    queryForOrg: true
 };
   
   // could use a has() test to optionally populate some global

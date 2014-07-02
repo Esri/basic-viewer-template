@@ -71,8 +71,8 @@
       label: "Düzenleyici"
     },
     legend: {
-      title: "Göstergeyi Görüntüle",
-      label: "Gösterge"
+      title: "Gösterimi Görüntüle",
+      label: "Gösterim"
     },
     details: {
       title: "Harita Ayrıntılarını Görüntüle",

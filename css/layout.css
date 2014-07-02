@@ -15,11 +15,16 @@ body {
 }
 
 .HomeButton .home{
-  position: absolute;
-  top: 120px;
-  left:20px;
-  z-index: 50;
-  background-color: #545454;
+background-color: #545454;
+
+}
+.HomeButton .home:hover {
+background-color:#eee;
+background-color: rgb(238, 238, 238);
+}
+
+.HomeButton .home:active {
+background-color:#ddd;
 }
 .LocateButton .zoomLocateButton {
  position: absolute;
@@ -466,6 +471,8 @@ background-image:none !important;
   -moz-border-radius: 4px;
   border-radius: 4px;
   box-shadow: 0 0 0.25em #BBBBBB;
+  width:32px;
+  height: 32px;
 }
 
 .esriSimpleSlider {
@@ -480,7 +487,10 @@ background-image:none !important;
   margin-top:10px;
   margin-bottom:10px;
 }
-
+.esriSimpleSliderVertical .esriSimpleSliderIncrementButton:hover ,.esriSimpleSliderVertical .esriSimpleSliderDecrementButton:hover  {
+  background:#eee;
+  background: rgb(238, 238, 238);
+}
 /*Styles for the search box (find address or place)*/
 .esriGeocoderResultsOpen .esriGeocoderContainer{
   position: relative;

@@ -29,7 +29,7 @@
         location: path_location + '/apl'
       },{
         name: "templateConfig",
-        location: path_location
+        location: path_location.substr(0,path_location.lastIndexOf('/OnePane')) 
       }]
     };
     </script>
@@ -39,7 +39,7 @@
     <script type="text/javascript">
       dojo.require("esri.layout");
     </script>
- 
+
     <script type="text/javascript" src="javascript/layout.js">
     </script>
     <script type="text/javascript">
@@ -51,22 +51,20 @@
 
       var i18n;
       dojo.ready(function(){
-
-
         i18n = dojo.i18n.getLocalization("esriTemplate","template");
         var  defaults = {
         //The ID for the map from ArcGIS.com
         webmap: "f5b13dbed07c46cdb783cf361833aa6b",
         //Modify this to point to your sharing service URL if you are using the portal
-        sharingurl: "http://www.arcgis.com",//for example: "http://www.arcgis.com",
+        sharingurl: "",//for example: "http://www.arcgis.com",
         //The id for the web mapping application item that contains configuration info - in most
         ////When editing you need to specify a proxyurl (see below) if the service is on a different domain
         //Specify a proxy url if you will be editing, using the elevation profile or have secure services or web maps that are not shared with everyone.
-        proxyurl: "",
+        proxyurl: null,
         //cases this will be null.
         appid: "",
         //set to true to display the title
-        displaytitle: true,
+        displaytitle: false,
         //Enter a title, if no title is specified, the webmap's title is used.
         title: "",
         //Enter a description for the application. This description will appear in the left pane
@@ -78,47 +76,43 @@
         theme: 'gray',
         //Optional tools - set to false to hide the tool
         //set to false to hide the zoom slider on the map
-        displayslider: true,
-        displaymeasure: true,
-        displaybasemaps: true,
-        displayoverviewmap: true,
-        displayeditor: true,
-        displaylegend: true,
-        displaysearch: true,
-        displaylayerlist: true,
-        displaybookmarks: true,
-        displaydetails: true,
-        displaytimeslider: true,
-        displayprint: true,
+        displayslider: false,
+        displaymeasure: false,
+        displaybasemaps: false,
+        displayoverviewmap: false,
+        displayeditor: false,
+        displaylegend: false,
+        displaysearch: false,
+        displaylayerlist: false,
+        displaybookmarks: false,
+        displaydetails: false,
+        displaytimeslider: false,
+        displayprint: false,
         displayprintlegend: false,
         displayeditortoolbar: false,
         displaymapwidgets:false, //deprecated. After the June 2014 release set displayHome and displayLocate instead
-        home: true,
-        locate: true,
+        home: false,
+        locate: false,
         //i18n.viewer.main.scaleBarUnits,
         //The elevation tool uses the  measurement tool to draw the lines. So if this is set
-        //to true then displaymeasure needs to be true too. NOTE: THis tool is deprecated and should no 
-        //longer be used in the Basic Viewer. Use the new version of the template instead
-        //https://github.com/Esri/elevation-profile-template
+        //to true then displaymeasure needs to be true too.
         displayelevation: false,
         //This option is used when the elevation chart is displayed to control what is displayed when users mouse over or touch the chart. When true, elevation gain/loss will be shown from the first location to the location under the cursor/finger.
         showelevationdifference: false,
-        displayscalebar: true,
-        displayshare: true,
+        displayscalebar: false,
+        displayshare: false,
         //Set to true to display the left panel on startup. The left panel can contain the legend, details and editor. Set to true to
         //hide left panel on initial startup. 2
-        leftPanelVisibility: true,
+        leftPanelVisibility: false,
         //If the webmap uses Bing Maps data, you will need to provide your Bing Maps Key
         bingmapskey: commonConfig.bingMapsKey,
-        //Get the default map units
-        units: commonConfig.units, 
         //specify a group in ArcGIS.com that contains the basemaps to display in the basemap gallery
         //example: title:'ArcGIS Online Basemaps' , owner:esri
         basemapgroup: {
           title: null,
           owner: null
         },
-        //Enter the URL's to the geometry service, print task and geocode service. 
+        //Enter the URL to a Geometry Service
         helperServices: commonConfig.helperServices,
         //Set the label in the nls file for your browsers language
         printlayouts: [{
@@ -163,7 +157,7 @@
           text: ''
         },
         //specify the width of the panel that holds the editor, legend, details
-        leftpanewidth: 228,
+        leftpanewidth: "35%",
         //Restrict the map's extent to the initial extent of the web map. When true users
         //will not be able to pan/zoom outside the initial extent.
         constrainmapextent: false,
@@ -174,7 +168,7 @@
           link: ''
         },
         //embed = true means the margins will be collapsed to just include the map no title or links
-        embed: false
+        embed: true
       };
         var supportsLocalization = true;
         var app = new utilities.App(defaults, supportsLocalization);

@@ -166,13 +166,6 @@ function createApp() {
     }
 
 
-    //create the map and enable/disable map options like slider, wraparound, esri logo etc
-    if (configOptions.displayslider) {
-        configOptions.displaySlider = true;
-    } else {
-        configOptions.displaySlider = false;
-    }
-
     var itemInfo = configOptions.itemInfo || configOptions.webmap;
 
     if (configOptions.gcsextent ) {
@@ -218,10 +211,13 @@ function getItem(item, extArray) {
 }
 
 function createMap(webmapitem) {
+    if(configOptions.embed && configOptions.home){
+        configOptions.displayslider = true;
+        
+    }
     var mapDeferred = esri.arcgis.utils.createMap(webmapitem, "map", {
         mapOptions: {
-            slider: configOptions.displaySlider,
-            sliderStyle: 'small',
+            slider: configOptions.displayslider,
             wrapAround180: !configOptions.constrainmapextent,
             showAttribution: true,
             //set wraparound to false if the extent is limited.
@@ -312,17 +308,19 @@ function createMap(webmapitem) {
         map.setExtent(initialExtent);
 
         //add the map widgets (home, locate) if specified 
-        if(configOptions.displaymapwidgets){
-                var homeDiv = dojo.create("div",{id:"homeDiv"},"map");
+        if(configOptions.displaymapwidgets || configOptions.home){
+
                 var homeButton = new esri.dijit.HomeButton({
                     map: map
-                },homeDiv);
-                homeButton.startup();
+                },dojo.create("div",{},dojo.query(".esriSimpleSliderIncrementButton")[0], "after"));//homeDiv);
+                homeButton.startup();        
+        }
+        if(configOptions.displaymapwidgets || configOptions.locate){
                 var locateDiv = dojo.create("div",{id:"locateDiv"},"map");
                 var locationButton = new esri.dijit.LocateButton({
                     map: map
                 },locateDiv);
-                locationButton.startup();           
+                locationButton.startup();   
         }
 
     });
@@ -1454,7 +1452,7 @@ function createOptions() {
             hasEsri = true;
             geocoder.name = "Esri World Geocoder";
             geocoder.outFields = "Match_addr, stAddr, City";
-            geocoder.singleLineFieldName = "Single Line";
+            geocoder.singleLineFieldName = "SingleLine";
             geocoder.placeholder = (configOptions.placefinder.placeholder === "") ? i18n.tools.search.title : configOptions.placefinder.placeholder;
             geocoder.esri = geocoder.placefinding = true;
             if (configOptions.placefinder.currentExtent || configOptions.searchextent) {
@@ -1742,7 +1740,7 @@ function hasTemporalLayer(layers) {
     for (var i = 0; i < layers.length; i++) {
         var layer = layers[i];
         if (layer.layerObject) {
-            if (layer.layerObject.timeInfo && layer.layerObject.visible) {
+            if (layer.layerObject.timeInfo && layer.layerObject.timeInfo.timeExtent && layer.layerObject.visible) {
                 timeLayers.push(layer.layerObject);
             }
         }
@@ -1875,7 +1873,8 @@ function createTimeSlider(timeProperties) {
     //create a time slider and a label to hold date details and add to the floating time panel
     var timeSlider = new esri.dijit.TimeSlider({
         style: "width: 100%;",
-        id: "timeSlider"
+        id: "timeSlider",
+        loop: true
     }, dojo.create('div'));
 
     var timeSliderLabel = dojo.create('div', {

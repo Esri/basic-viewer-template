@@ -59,7 +59,7 @@ body {
 /*slider background*/
 .esriSimpleSliderVertical .esriSimpleSliderIncrementButton ,.esriSimpleSliderVertical .esriSimpleSliderDecrementButton  {
   background:url(../images/orange/toolbar_bg.png) repeat-x #db870a;
-  border:solid 1px #545454;
+  border: solid 1px #db870a;
 }
 
 /*Identity Manager Dialog*/
