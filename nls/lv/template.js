@@ -55,7 +55,7 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "dd.MMMM.yyyy.",
+      datePattern: "dd.MM.yyyy.",
       yearPattern: "yyyy",
       hourTimePattern: "H a",
       minuteTimePattern: "HH:mm",

@@ -57,7 +57,7 @@
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
       datePattern: "d. MMMM yyyy",
       yearPattern: "yyyy",
-      hourTimePattern: "h a",
+      hourTimePattern: "H",
       minuteTimePattern: "h:mm a",
       secondTimePattern: "h:m:s.SSS a",
       millisecondTimePattern:"h:m:ss.SSS a",
