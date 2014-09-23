@@ -1,6 +1,6 @@
-basic-viewer-template
+
 =====================
-*Basic Viewer* is a configurable application template that enables you to display an ArcGIS web map using a variety of tools. 
+*Classic Viewer* is a configurable application template that enables you to display an ArcGIS web map using a variety of tools. 
 
 ![Screen Shot](https://dl.dropboxusercontent.com/u/24627279/screenshots/basic_viewer_1.jpg)
 
