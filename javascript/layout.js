@@ -623,20 +623,6 @@ function resizeMap() {
 
 
 function navigateStack(label) {
-    //display the left panel if its hidden
-    showLeftPanel();
-
-    //select the appropriate container
-    dijit.byId('stackContainer').selectChild(label);
-
-    //hide or show the editor
-    if (label === 'editPanel') {
-        createEditor();
-    } else {
-        destroyEditor();
-    }
-
-    //toggle the other buttons
     var buttonLabel = '';
     switch (label) {
     case 'editPanel':
@@ -649,6 +635,22 @@ function navigateStack(label) {
         buttonLabel = 'detailButton';
         break;
     }
+    var leftPaneWidth = dojo.style(dojo.byId("leftPane"), "width");
+    //Buttons act like toggles to hide/show the panel
+    if (leftPaneWidth > 0 && dijit.byId('stackContainer').selectedChildWidget.id === label) {
+        hideLeftPanel();
+        destroyEditor();
+        buttonLabel = '';
+    } else {
+        showLeftPanel();
+        dijit.byId('stackContainer').selectChild(label);
+        //hide or show the editor
+        if (label === 'editPanel') {
+            createEditor();
+        } else {
+            destroyEditor();
+        }
+    };
     toggleToolbarButtons(buttonLabel);
 }
 
