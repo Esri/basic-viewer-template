@@ -502,6 +502,10 @@ function initUI(response) {
         } else {
             dojo.style(dojo.byId("leftPane"), "width", configOptions.leftpanewidth + "px");
         }
+
+        //Hide the panel, so it can be displayed by the upcoming toggle actions
+        hideLeftPanel();
+
         //Add the Editor Button and Panel
         if (configOptions.displayeditor == 'true' || configOptions.displayeditor === true) {
             addEditor(editLayers); //only enabled if map contains editable layers
@@ -681,11 +685,7 @@ function hideLeftPanel() {
     dijit.byId('mainWindow').resize();
     resizeMap();
     //uncheck the edit, detail and legend buttons
-    setTimeout(function () {
-        toggleToolbarButtons('');
-
-    }, 100);
-
+    toggleToolbarButtons('');
 }
 
 function toggleToolbarButtons(label) {
