@@ -502,6 +502,10 @@ function initUI(response) {
         } else {
             dojo.style(dojo.byId("leftPane"), "width", configOptions.leftpanewidth + "px");
         }
+
+        //Hide the panel, so it can be displayed by the upcoming toggle actions
+        hideLeftPanel();
+
         //Add the Editor Button and Panel
         if (configOptions.displayeditor == 'true' || configOptions.displayeditor === true) {
             addEditor(editLayers); //only enabled if map contains editable layers
@@ -623,20 +627,6 @@ function resizeMap() {
 
 
 function navigateStack(label) {
-    //display the left panel if its hidden
-    showLeftPanel();
-
-    //select the appropriate container
-    dijit.byId('stackContainer').selectChild(label);
-
-    //hide or show the editor
-    if (label === 'editPanel') {
-        createEditor();
-    } else {
-        destroyEditor();
-    }
-
-    //toggle the other buttons
     var buttonLabel = '';
     switch (label) {
     case 'editPanel':
@@ -649,6 +639,22 @@ function navigateStack(label) {
         buttonLabel = 'detailButton';
         break;
     }
+    var leftPaneWidth = dojo.style(dojo.byId("leftPane"), "width");
+    //Buttons act like toggles to hide/show the panel
+    if (leftPaneWidth > 0 && dijit.byId('stackContainer').selectedChildWidget.id === label) {
+        hideLeftPanel();
+        destroyEditor();
+        buttonLabel = '';
+    } else {
+        showLeftPanel();
+        dijit.byId('stackContainer').selectChild(label);
+        //hide or show the editor
+        if (label === 'editPanel') {
+            createEditor();
+        } else {
+            destroyEditor();
+        }
+    };
     toggleToolbarButtons(buttonLabel);
 }
 
@@ -679,11 +685,7 @@ function hideLeftPanel() {
     dijit.byId('mainWindow').resize();
     resizeMap();
     //uncheck the edit, detail and legend buttons
-    setTimeout(function () {
-        toggleToolbarButtons('');
-
-    }, 100);
-
+    toggleToolbarButtons('');
 }
 
 function toggleToolbarButtons(label) {
