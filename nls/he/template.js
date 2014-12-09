@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "לא ניתן ליצור מפה",
       bitly: 'השימוש ב-bit.ly מיועד לקיצור ה- url לצורך שיתוף. קרא את קובץ ה- readme לפרטים על איך ליצור ולהשתמש במפתח bitly',
       general: "שגיאה"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "החלף מפת בסיס",
     label: "מפת בסיס"
@@ -28,14 +28,14 @@
     share: {
     title: "שתף מפה",
     label: "שתף",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "פייסבוק"
        },
-      twitter:{
+      twitter: {
         label: "טוויטר"
       },
-      email:{
+      email: {
         label: "Email",
         message: "בדוק מפה זו"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "לוח סגור",
       label: "סגור"
     }

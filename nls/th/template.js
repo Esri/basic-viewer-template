@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "ไม่สามารถสร้างแผนที่ได้",
       bitly: 'bitly ใช้เพื่อทำให้ URL สำหรับการแชร์สั้นลง อ่านไฟล์ Readme สำหรับรายละเอียดในการสร้างและใช้ bitly key',
       general: "ข้อผิดพลาด"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "เปลี่ยนแผนที่ฐาน",
     label: "แผนที่ฐาน"
@@ -28,14 +28,14 @@
     share: {
     title: "แชร์แผนที่",
     label: "แชร์",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "เฟสบุค"
        },
-      twitter:{
+      twitter: {
         label: "ทวิตเตอร์"
       },
-      email:{
+      email: {
         label: "อีเมล์",
         message: "ดูแผนที่นี้"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "ปิดแถบเครื่องมือ",
       label: "ปิด"
     }

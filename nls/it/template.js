@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Impossibile creare la mappa",
       bitly: 'a livello di bit viene utilizzata per abbreviare l\'URL per la condivisione. Per informazioni dettagliate sulla creazione e l\'utilizzo di una chiave a livello di bit, vedere il file Readme.',
       general: "Errore"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Cambia mappa di base",
     label: "Mappa di base"
@@ -28,14 +28,14 @@
     share: {
     title: "Condividi mappa",
     label: "Condividi",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-mail",
         message: "Guarda questa mappa"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Chiudi pannello",
       label: "Chiudi"
     }

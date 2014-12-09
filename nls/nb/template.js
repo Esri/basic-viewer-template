@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Kan ikke opprette kart",
       bitly: 'bitly brukes til å forkorte URLen for deling. Les readme-filen for detaljer om å opprette og bruke en bitly-nøkkel',
       general: "Feil"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Bytt bakgrunnskart",
     label: "Bakgrunnskart"
@@ -28,14 +28,14 @@
     share: {
     title: "Del kart",
     label: "Del",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-post",
         message: "Sjekk ut dette kartet"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Lukk panelet",
       label: "Lukk"
     }

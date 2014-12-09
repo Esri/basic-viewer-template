@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Nelze vytvořit mapu",
       bitly: 'Služba bitly slouží ke zkracování adresy URL pro usnadnění sdílení. Pro více informací o vytváření a používání klíče bitly si přečtěte soubor readme.',
       general: "Chyba"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Přepnout podkladovou mapu",
     label: "Podkladová mapa"
@@ -28,14 +28,14 @@
     share: {
     title: "Sdílet mapu",
     label: "Sdílet",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-mail",
         message: "Prohlédnout mapu"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Zavřít panel",
       label: "Zavřít"
     }

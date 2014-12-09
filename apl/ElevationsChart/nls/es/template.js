@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Perfil de elevación",
     showMe: "mostrarme",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Error de configuración no válida',
       message: 'Configuración no válida.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Error de parámetros de constructor faltantes',
       message: 'Parámetro de constructor faltante.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Error de parámetro inic. faltante',
       message: 'Parámetro inic. faltante.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Error de operación no compatible',
       message: 'Esta versión de SOE NO es compatible con esta operación.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Error de geometrías de varias partes no compatibles',
       message: "AVISO: Las líneas formadas por varias partes NO son compatibles."
     }

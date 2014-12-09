@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "マップを作成できません",
       bitly: 'bitly を使用すると共有する URL を短縮できます。bitly キーの作成と使用の詳細については、Readme ファイルをご参照ください。',
       general: "エラー"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "ベースマップの切り替え",
     label: "ベースマップ"
@@ -28,14 +28,14 @@
     share: {
     title: "マップの共有",
     label: "共有",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E メール",
         message: "このマップをチェック アウト"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "パネルを閉じる",
       label: "閉じる"
     }

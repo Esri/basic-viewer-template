@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Høydeprofil",
     showMe: "vis meg",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Ugyldig konfigurasjonsfeil',
       message: 'Ugyldig konfigurasjon.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Mangler konstruksjonsparameterfeil',
       message: 'Mangler konstruksjonsparameter.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Mangler initparameterfeil',
       message: 'Mangler initparameter.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Operasjonen støttes ikke-feil',
       message: 'Denne versjonen av SOE støtter IKKE denne operasjonen.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Geometri i flere deler støttes ikke-feil',
       message: "ADVARSEL: linjer i flere deler støttes for tiden IKKE."
     }

@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "ภาพตัดขวางความสูง",
     showMe: "แสดง",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'เกิดข้อผิดพลาดจากการปรับแต่งไม่ถูกต้อง',
       message: 'การปรับแต่งไม่ถูกต้อง'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'ข้อผิดพลาดจากพารามิเตอร์ไม่ครบโครงสร้าง',
       message: 'พารามิเตอร์ไม่ครบโครงสร้าง'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'ข้อผิดพลาดจากพารามิเตอร์ Init ไม่ครบ',
       message: 'พารามิเตอร์ Init ไม่ครบ'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'ข้อผิดพลาดจากการไม่สนับสนุนการทำงาน',
       message: 'SOE เวอร์ชันนี้ไม่รองรับการทำงานนี้'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'ข้อผิดพลาดเนื่องจากไม่รองรับรูปทรงหลายหลายเหลี่ยม',
       message: "คำเตือน: ไม่รองรับรูปทรงเส้นหลายเส้น"
     }

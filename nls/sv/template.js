@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Det går inte att skapa kartan",
       bitly: 'bitly används för att förkorta URL:en för delning. Information om hur du skapar och använder en bitly-nyckel finns i readme-filen',
       general: "Fel"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Byt baskarta",
     label: "Baskarta"
@@ -28,14 +28,14 @@
     share: {
     title: "Dela karta",
     label: "Dela",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-post",
         message: "Titta på den här kartan"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Stäng panel",
       label: "Stäng"
     }

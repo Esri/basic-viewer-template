@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Nevar izveidot karti",
       bitly: 'bitly tiek izmantots, lai saīsinātu url uz koplietošanu. Apskatīt readme faila informāciju par bitly taustiņa izveidošanas un lietošanas detaļām',
       general: "Kļūda"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Pārslēgt pamatkarti",
     label: "Pamatkarte"
@@ -28,14 +28,14 @@
     share: {
     title: "Koplietot karti",
     label: "Koplietot",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "Epasts",
         message: "Pārbaudiet šo karti"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Aizvērt paneli",
       label: "Aizvērt"
     }

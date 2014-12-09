@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Ei suuda luua kaarti",
       bitly: 'Et jagada url-i on selle lühendamiseks kasutusel bitly. Vaata loemind-faili bitly loomiseks ja kasutamiseks.',
       general: "Viga"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Vaheta aluskaart",
     label: "Aluskaart"
@@ -28,14 +28,14 @@
     share: {
     title: "Jaga kaart",
     label: "Jaga",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-mail",
         message: "Tutvu kaardiga"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Sulge paneel",
       label: "Sulge"
     }

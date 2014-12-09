@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Pacēluma profils",
     showMe: "parādiet man",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Nederīgas konfigurācijas kļūda',
       message: 'Nederīga konfigurācija.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Kļūda, trūkst konstruktora parametru',
       message: 'Trūkst konstruktora parametrs.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Kļūda, trūkst sākuma parametru',
       message: 'Trūkst sākuma parametrs.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Kļūda, operāciju neatbalsta',
       message: 'Šī SOE versija NEATBALSTA šo darbību.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Multi daļas ģeometrijas neatbalstīšanas kļūda',
       message: "UZMANĪBU: multi daļu līnijas šobrīd NAV atbalstītas."
     }

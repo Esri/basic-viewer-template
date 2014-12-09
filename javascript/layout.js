@@ -9,7 +9,6 @@ dojo.require("esri.dijit.LocateButton");
 dojo.require("apl.ElevationsChart.Pane");
 
 var map;
-var clickHandler, clickListener;
 var editLayers = [],
     editorWidget;
 var webmapExtent;
@@ -78,7 +77,16 @@ dojox.layout.FloatingPane.prototype.show = function (callback) {
       //fix for dojox/mobile bug https://bugs.dojotoolkit.org/ticket/17228
      document.dojoClick = false;
 
-
+     require(["dojo/sniff"],function(has){
+     
+        if(has("ie") || has("trident")){
+            var ss = document.createElement("link");
+            ss.type = "text/css";
+            ss.rel = "stylesheet";
+            ss.href = "css/ie.css";
+            document.getElementsByTagName("head")[0].appendChild(ss);
+        }
+     });
 
 
     configOptions = options;
@@ -225,6 +233,7 @@ function createMap(webmapitem) {
             //set wraparound to false if the extent is limited.
             logo: !configOptions.customlogo.image //hide esri logo if custom logo is provided
         },
+        usePopupManager: true,
         editable: configOptions.displayeditor,
         ignorePopups: false,
         bingMapsKey: configOptions.bingmapskey
@@ -257,10 +266,6 @@ function createMap(webmapitem) {
             dojo.query("html").addClass("embed");
         }
 
-
-        //get the popup click handler so we can disable it when measure tool is active
-        clickHandler = response.clickEventHandle;
-        clickListener = response.clickEventListener;
         map = response.map;
 
 
@@ -1312,15 +1317,11 @@ function destroyEditor() {
 
 
 function enablePopups() {
-    if (clickListener) {
-        clickHandler = dojo.connect(map, "onClick", clickListener);
-    }
+   this.map.setInfoWindowOnClick(true);
 }
 
 function disablePopups() {
-    if (clickHandler) {
-        dojo.disconnect(clickHandler);
-    }
+   this.map.setInfoWindowOnClick(false);
 }
 
 //Create menu of social network sharing options (Email, Twitter, Facebook)

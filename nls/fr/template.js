@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Impossible de créer la carte",
       bitly: 'bitly permet de raccourcir l\'URL pour le partage. Consultez le fichier Lisezmoi pour plus d\'informations sur la création et l\'utilisation d\'une clé bitly',
       general: "Erreur"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Changer de fond de carte",
     label: "Fond de carte"
@@ -28,14 +28,14 @@
     share: {
     title: "Partager la carte",
     label: "Partager",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "Adresse électronique",
         message: "Extraire cette carte"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Fermer le volet",
       label: "Fermer"
     }

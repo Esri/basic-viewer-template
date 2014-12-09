@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "標高グラフ",
     showMe: "表示",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: '無効な構成のエラー',
       message: '構成が無効です。'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'コンストラクタ パラメータが見つからないエラー',
       message: 'コンストラクタ パラメータが見つかりません。'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'init パラメータが見つからないエラー',
       message: 'init パラメータが見つかりません。'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'サポートされていない操作のエラー',
       message: 'この操作は、このバージョンの SOE ではサポートされていません。'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'マルチパート ジオメトリがサポートされていないエラー',
       message: "注意: マルチパート ラインは、現在サポートされていません。"
     }

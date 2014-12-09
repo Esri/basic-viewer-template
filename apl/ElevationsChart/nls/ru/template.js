@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Профиль рельефа",
     showMe: "показать",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Ошибка некорректной конфигурации',
       message: 'Некорректная конфигурация'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Ошибка пропуска параметров конструктора',
       message: 'Пропуск параметра конструктора.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Ошибка пропуска начального параметра',
       message: 'Пропущен начальный параметр.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Ошибка отсутствия поддержки операции',
       message: 'Эта версия SOE НЕ поддерживает эту операцию.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Ошибка отсутствия поддержки составной геометрии',
       message: "ВНИМАНИЕ: составная линия в настоящий момент НЕ поддерживается."
     }

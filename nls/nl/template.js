@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Kan kaart niet maken",
       bitly: 'Bitly wordt gebruikt om de URL die u wilt delen, korter te maken. Bekijk het leesmij-bestand voor details over het maken en gebruiken van een bitly-code',
       general: "Fout"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Basiskaart wijzigen",
     label: "Basiskaart"
@@ -28,14 +28,14 @@
     share: {
     title: "Kaart delen",
     label: "Delen",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-mail",
         message: "Bekijk deze kaart"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Sluiten",
       label: "Sluiten"
     }

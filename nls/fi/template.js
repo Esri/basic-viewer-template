@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "english" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Karttaa ei voi luoda",
       bitly: 'bitly-palvelua käytetään url-osoitteen lyhentämiseksi jakamista varten. Readme-tiedostossa on lisätietoja bitly-avaimen luomisesta ja käyttämisestä',
       general: "Virhe"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Vaihda taustakartta",
     label: "Taustakartat"
@@ -28,14 +28,14 @@
     share: {
     title: "Jaa kartta",
     label: "Jaa",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "Sähköposti",
         message: "Tutustu tähän karttaan"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Sulje ruutu",
       label: "Sulje"
     }

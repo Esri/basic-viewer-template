@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "פרופיל גבהים",
     showMe: "הצג בפניי",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'שגיאה תצורה לא תקינה',
       message: 'קביעת תצורה לא תקינה.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'שגיאת פרמטר Constructor חסר',
       message: 'מחסור בפרמטר Constructor'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'שגיאה במחסור בפרמטר Init',
       message: 'חסר פרמטר אתחול'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'שגיאת פעולה לא נתמכת',
       message: 'גרסה זו של SOE לא תומכת בפעולה זו.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'שגיאת גיאומטריות מרובות חלקים לא נתמכות',
       message: "זהירות: קווים מרובי חלקים כרגע לא נתמכים."
     }

@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Korkeusprofiili",
     showMe: "näytä minut",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Virheellinen kokoonpano -virhe',
       message: 'Virheellinen kokoonpano.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Muodostusohjelman parametreja puuttuu -virhe.',
       message: 'Muodostusohjelman parametri puuttuu.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Alustusparametri puuttuu -virhe.',
       message: 'Alustusparametri puuttuu.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Toimintoa ei tueta -virhe',
       message: 'Tämä SOE-versio EI tue tätä toimintoa.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Moniosaisia kohteita ei tueta -virhe',
       message: "HUOM.: tällä hetkellä EI tueta moniosaisia viivoja."
     }

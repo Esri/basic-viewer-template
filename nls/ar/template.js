@@ -1,19 +1,19 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "يتعذر إنشاء الخريطة",
       bitly: 'يستخدم bitly لاختصار عنوان url حتى يمكن مشاركته. أظهر ملف \"اقرأني\" للحصول على تفاصيل إنشاء مفتاح bitly واستخدامه',
       general: "خطأ"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "تبديل خريطة الأساس",
-    label: "خريطة أساسية"
+    label: "خريطة أساس"
     },
     print: {
     layouts:{
@@ -28,14 +28,14 @@
     share: {
     title: "مشاركة الخريطة",
     label: "مشاركة",
-    menu:{
-      facebook:{
-        label: "فيس بوك"
+    menu: {
+      facebook: {
+        label: "Facebook"
        },
-      twitter:{
-        label: "تويتر"
+      twitter: {
+        label: "Twitter"
       },
-      email:{
+      email: {
         label: "البريد الإلكتروني",
         message: "فحص الخريطة"
       }    
@@ -89,17 +89,17 @@
     },
     search: {
       title: "العثور على عنوان أو مكان ما",
-      popupTitle: "موقع",
+      popupTitle: "الموقع",
       currentLocation: "الموقع الحالي",
       notWhatYouWanted: "أليس هذا ما تريده؟" ,
-      selectAnother: "حدد موقع آخر",
+      selectAnother: "تحديد موقع آخر",
       errors:{
        missingLocation: "لم يتم العثور على الموقع"
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "إغلاق اللوحة",
       label: "إغلاق"
     }

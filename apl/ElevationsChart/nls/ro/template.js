@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Profil elevaţie",
     showMe: "arată",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Eroare Configuraţie nevalidă',
       message: 'Configuraţie nevalidă.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Eroare Absenţă parametri constructor',
       message: 'Lipsesc parametrii constructorului.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Eroare Absenţă parametru iniţial',
       message: 'Lipseşte parametrul iniţial.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Eroare Operaţie neacceptată',
       message: 'Această versiune SOE NU acceptă această operaţie.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Eroare Geometrii multicomponente neacceptate',
       message: "PRECAUŢIE: liniile multicomponente NU sunt acceptate în acest moment."
     }

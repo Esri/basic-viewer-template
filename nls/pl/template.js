@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Nie można utworzyć mapy",
       bitly: 'Serwis Bitly umożliwia skracanie adresów URL, aby ułatwić ich udostępnianie. W pliku readme znajdują się szczegóły dotyczące tworzenia i używania klucza bitly.',
       general: "Błąd"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Przełącz mapę bazową",
     label: "Mapa bazowa"
@@ -28,14 +28,14 @@
     share: {
     title: "Udostępnij mapę",
     label: "Udostępnij",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "Email",
         message: "Sprawdź tę mapę"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Zamknij panel",
       label: "Zamknij"
     }

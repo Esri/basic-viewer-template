@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Perfil de Elevação",
     showMe: "mostre-me",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Erro de Configuração Inválida',
       message: 'Configuração inválida.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Erro dos Parâmetros do Construtor Ausentes',
       message: 'Parâmetro do construtor ausente.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Erro do Parâmetro Ini Ausente',
       message: 'Parâmetro ini ausente.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Erro de Operação Sem Suporte',
       message: 'Esta versão de SOE, NÃO tem suporte para esta operação.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Erro de Geometrias de Múltiplas Partes Sem Suporte.',
       message: "ATENÇÃO: linhas de múltiplas partes NÃO tem suporte atualmente."
     }

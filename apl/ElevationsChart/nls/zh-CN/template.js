@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "高程剖面图",
     showMe: "显示",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: '无效配置错误',
       message: '配置无效。'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: '缺少构造器参数错误',
       message: '缺少构造器参数。'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: '缺少初始化参数错误',
       message: '缺少初始参数。'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: '操作不受支持错误',
       message: '此版本的 SOE 不支持此操作。'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: '多部件几何不受支持错误',
       message: "注意: 当前不支持多部件线。"
     }

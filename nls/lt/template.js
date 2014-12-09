@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Žemėlapio sukurti nepavyko",
       bitly: 'bitly naudojamas url trumpinimui bendrinant. Susipažinkite su išsamia informacija, pateikiama faile skaityk (readme) kaip sukurti bitly raktą',
       general: "Klaida"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Pakeisti pagrindo žemėlapį",
     label: "Pagrindo žemėlapis"
@@ -28,14 +28,14 @@
     share: {
     title: "Bendrinti žemėlapį",
     label: "Bendrinti",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "El. paštas",
         message: "Išregistruoti šį žemėlapį"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Uždaryti skydelį",
       label: "Užverti"
     }

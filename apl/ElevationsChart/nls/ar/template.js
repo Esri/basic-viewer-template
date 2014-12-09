@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "ارتفاع الملف التعريفي",
     showMe: "عرض",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'خطأ تكوين غير صالح',
       message: 'تكوين غير صالح.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'خطأ في معطيات مفقودة في المنشئ',
       message: 'يوجد معطى مفقود في المنشئ.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'خطأ معطى مفقود في التهيئة.',
       message: 'يوجد معطى مفقود في التهيئة.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'خطأ لأن العملية غير مدعومة',
       message: 'لا يقوم إصدار SOE الحالي بدعم العملية.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'خطأ عدم دعم الأشكال الهندسية متعددة الأجزاء',
       message: "تحذير: لا يتم تدعيم الخطوط متعددة الأجزاء حاليًا."
     }

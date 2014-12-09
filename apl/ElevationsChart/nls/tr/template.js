@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Yükselti Profili",
     showMe: "göster",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Geçersiz Yapılandırma Hatası',
       message: 'Geçersiz yapılandırma.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Eksik Yapıcı Parametreleri Hatası',
       message: 'Eksik yapıcı parametresi.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Eksik İlk Değer Parametresi Hatası',
       message: 'Eksik ilk değer parametresi.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'İşlem Desteklenmiyor Hatası',
       message: 'Bu SOE sürümü bu işlemi DESTEKLEMEZ.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Çok Bölümlü Geometriler Desteklenmiyor Hatası',
       message: "DİKKAT: çok parçalı çizgiler henüz DESTEKLENMEMEKTEDİR."
     }

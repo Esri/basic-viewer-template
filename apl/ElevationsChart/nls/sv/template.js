@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Profil för höjdkurva",
     showMe: "visa mig",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Fel: ogiltig konfiguration',
       message: 'Ogiltig konfiguration.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Fel: konstruerarparametrar saknas',
       message: 'Konstruerarparameter saknas.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Fel: initparameter saknas',
       message: 'Initparameter saknas.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Fel: åtgärden stöds inte',
       message: 'Den här versionen av SOE stöder INTE den här åtgärden.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Fel: flerdelade geometrier stöds inte',
       message: "VARNING: flerdelade linjer stöds INTE för tillfället."
     }

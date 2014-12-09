@@ -64,7 +64,7 @@ background-color:#ddd;
 }
 
 #webmapTitle{
-  font-family:"gill sans",helvetica,arial,sans-serif;
+  font-family: arial,helvetica,arial,sans-serif;
   color: #333;
   font-size:32px;
   max-width:72%;
@@ -112,6 +112,10 @@ background-color:#ddd;
 }
 .dijitContentPane{
    overflow:visible;
+}
+#leftPaneHeader{
+  border:none !important;
+  background-color: inherit !important;
 }
 #legendPanel{
 /*width:100%;*/

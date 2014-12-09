@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Не удалось создать карту",
       bitly: 'Для сокращения url при предоставления общего доступа используется ключ bitly. Информация о создании и использовании ключа bitly находится в файле readme.',
       general: "Ошибка"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Переключить базовую карту",
     label: "Базовая карта"
@@ -28,14 +28,14 @@
     share: {
     title: "Общий доступ к карте",
     label: "Общий доступ",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "Email",
         message: "Открепить карту"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Закрыть панель",
       label: "Закрыть"
     }

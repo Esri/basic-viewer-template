@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "metric" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Não foi possível criar o mapa",
       bitly: 'O bitly é utilizado para diminuir a url para compartilhamento. Consulte o arquivo Leia-Me para detalhes sobre criar e utilizar a tecla bitly',
       general: "Erro"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Trocar Mapa Base",
     label: "Mapa Base"
@@ -28,14 +28,14 @@
     share: {
     title: "Compartilhar Mapa",
     label: "Compartilhar",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-mail",
         message: "Desconectar mapa"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Fechar Painel",
       label: "Fechar"
     }

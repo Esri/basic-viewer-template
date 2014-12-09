@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Aukščių profilis",
     showMe: "parodyti",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Neteisingos konfigūracijos klaida',
       message: 'Neteisinga konfigūracija'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Trūkstamų konstruktoriaus parametrų klaida',
       message: 'Konstruktoriui trūksta parametrų.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Trūkstamo init parametro klaida',
       message: 'Trūkstama parametro init.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Nepalaikomos operacijos klaida',
       message: 'Ši SOE versija operacijos nepalaiko.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Sudėtinės geometrijos nepalaikymo klaida',
       message: "ĮSPĖJIMAS: sudėtinės linijos šiuo metu nėra palaikomos."
     }

@@ -1,16 +1,16 @@
 ﻿define(
-({
-  viewer:{
-    main:{
+   ({
+  viewer: {
+    main: {
       scaleBarUnits: "english" //"english (for miles) or "metric" (for km) - don't translate.
     },
-    errors:{
+    errors: {
       createMap: "Harita oluşturulamıyor",
       bitly: 'bitly, paylaşmak üzere url\'yi kısaltmak için kullanılır. Bir bitly anahtarı oluşturma ve kullanmanın ayrıntıları için readme dosyasına bakın',
       general: "Hata"
     }
   },
-  tools:{
+  tools: {
     basemap: {
     title: "Altlık Haritayı Değiştir",
     label: "Altlık Harita"
@@ -28,14 +28,14 @@
     share: {
     title: "Haritayı Paylaş",
     label: "Paylaş",
-    menu:{
-      facebook:{
+    menu: {
+      facebook: {
         label: "Facebook"
        },
-      twitter:{
+      twitter: {
         label: "Twitter"
       },
-      email:{
+      email: {
         label: "E-posta",
         message: "Bu haritayı teslim al"
       }    
@@ -98,8 +98,8 @@
       }
     }
   },
-  panel:{
-    close:{
+  panel: {
+    close: {
       title: "Paneli Kapat",
       label: "Kapat"
     }

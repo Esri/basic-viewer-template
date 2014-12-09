@@ -1,5 +1,5 @@
 ﻿define(
-({
+   ({
   display: {
     elevationProfileTitle: "Kõrgusprofiil",
     showMe: "näita",
@@ -25,27 +25,22 @@
   },
   errors: {
     InvalidConfiguration: {
-      code: 17056601,
       name: 'Vale konfiguratsiooni viga',
       message: 'Vale konfiguratsioon.'
     },
     MissingConstructorParameters: {
-      code: 17056602,
       name: 'Puuduvate konstruktori parameetrite viga',
       message: 'Puuduv konstruktori parameeter.'
     },
     MissingInitParameter: {
-      code: 17056603,
       name: 'Puuduva algparameetri viga',
       message: 'Puuduv algparameeter.'
     },
     SOEOperationNotSupported: {
-      code: 17056604,
       name: 'Mittetoetatud tegevuse viga',
       message: 'See SOE versioon EI toeta seda tegevust.'
     },
     SOEMultiPartGeometriesNotSupported: {
-      code: 17056605,
       name: 'Mitmeosalise geomeetria mittetoetamise viga',
       message: "HOIATUS: mitmeosalised jooned EI ole hetkel toetatud."
     }
