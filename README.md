@@ -47,6 +47,7 @@ Note: If your application edits features in a feature service, contains secure s
 
 For addtional customization options view the [wiki](https://github.com/Esri/basic-viewer-template/wiki). 
 
+
 #Requirements
 
 - Notepad or HTML editor
