@@ -13,11 +13,11 @@
     locationOnMap: "diagram profilu wysokościowego, aby wyświetlić wysokości terenu i lokalizację na mapie."
   },
   // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //
-  locationResultTemplate: "Wysokości terenu: {0} metrów",
+  locationResultTemplate: "Wysokość: {0} metrów",
   chart: {
     title: "Profil wysokościowy",
     // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //
-    elevationTitleTemplate: "Wysokości terenu w {0}",
+    elevationTitleTemplate: "Wysokość w {0}",
     // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //
     distanceTitleTemplate: "Odległość w {0}",
     // DO **NOT** CHANGE TEXT WITHIN CURLY BARCKETS //

@@ -6,7 +6,7 @@
     },
     errors: {
       createMap: "无法创建地图",
-      bitly: 'bitly 用于缩短共享 url。有关创建和使用 bitly 密钥的详细信息，请查看自述文件',
+      bitly: 'bitly 用于缩短 url 以便进行共享。有关创建和使用 bitly 密钥的详细信息，请查看自述文件',
       general: "错误"
     }
   },
@@ -55,7 +55,7 @@
       // H: hours by 0-23, e.g. 6 or 23 ("HH" would be 06 or 23)
       // ss: seconds, e.g. 08 or 37 (just "s" would be 8 or 37)
       // SSS: milliseconds, e.g. 006 or 123 (just "S" would be 6 or 123)
-      datePattern: "MMMM d, yyyy",
+      datePattern: "yyyy 年 m 月 d 日",
       yearPattern: "yyyy",
       hourTimePattern: "H",
       minuteTimePattern: "H:mm",
