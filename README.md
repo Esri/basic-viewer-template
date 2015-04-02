@@ -1,14 +1,16 @@
 
 Classic Viewer
 =====================
+Note: An updated version of this application has been created that contains much of the funcationality of this template but with an updated look and feel. We will continue to fix bugs in this version but all new development efforts will be in the new application. Visit the new template [repo](https://github.com/Esri/map-tools-template) for more details. 
+<p>This template provides a starting point for creating your web
+
 *Classic Viewer* is a configurable application template that enables you to display an ArcGIS web map using a variety of tools. 
 
 ![Screen Shot](https://dl.dropboxusercontent.com/u/24627279/screenshots/basic_viewer_1.jpg)
 
 [View it live] (http://www.arcgis.com/apps/OnePane/basicviewer/index.html?webmap=f5b13dbed07c46cdb783cf361833aa6b)
 
-Note: An updated version of this application has been created that contains much of the funcationality of this template but with an updated look and feel. We will continue to fix bugs in this version but all new development efforts will be in the new application. Visit the new template [repo](https://github.com/Esri/Viewer) for more details. 
-<p>This template provides a starting point for creating your web
+
 
 
 #Features
