@@ -15,7 +15,12 @@
       <link rel="stylesheet" type="text/css" href="css/ie.css" />
     <![endif]-->
     <script type="text/javascript">
+    var url = window.location.href;
+    var arr = url.split("/");
     var path_location = location.pathname.replace(/\/[^/]+$/, '');
+    
+    path_location = arr[0]+"//"+arr[2]+path_location;
+
     var dojoConfig = {
       parseOnLoad: true,
       packages: [{
