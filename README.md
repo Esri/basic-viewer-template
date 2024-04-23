@@ -1,5 +1,7 @@
+ArcGIS Configurable Apps will be retired in 2025. The ArcGIS Configurable Apps source code repro is deprecated and will not receive further updates. In addition, this repository will be removed in October 2025, along with the October 2025 ArcGIS Online update.
 
-Classic Viewer
+
+DEPRECATED: Classic Viewer
 =====================
 Note: An updated version of this application has been created that contains much of the funcationality of this template but with an updated look and feel. We will continue to fix bugs in this version but all new development efforts will be in the new application. Visit the new template [repo](https://github.com/Esri/map-tools-template) for more details. 
 
